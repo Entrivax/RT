@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/25 16:13:51 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/25 18:17:51 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,15 @@ typedef struct		s_img
 }					t_img;
 
 void				program(int argc, char **argv);
+
 t_env				*init_env(void);
 void				init_img(void *mlx, t_img *img, int width, int height);
+
+void				set_img_pixel(t_img *img, int x, int y, t_rgb color);
 void				set_mlx_hooks(t_env *env);
 int					expose_hook(t_env *env);
 int					loop_hook(t_env *env);
+
+t_mtx				norm_vect(t_mtx mtx);
 
 #endif
