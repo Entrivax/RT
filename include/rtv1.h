@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/25 18:17:51 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/27 13:40:47 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,17 @@ typedef struct		s_scene
 	t_rgb			i_ambiant;
 }					t_scene;
 
+typedef struct		s_img
+{
+	void			*img;
+	char			*img_writable;
+	int				bytes_per_pixel;
+	int				size_line;
+	int				endian;
+	int				width;
+	int				height;
+}					t_img;
+
 typedef struct		s_env
 {
 	void			*mlx;
@@ -74,17 +85,6 @@ typedef struct		s_env
 	t_mtx			cylinder_mtx;
 	t_mtx			cone_mtx;
 }					t_env;
-
-typedef struct		s_img
-{
-	void			*img;
-	char			*img_writable;
-	int				bytes_per_pixel;
-	int				size_line;
-	int				endian;
-	int				width;
-	int				height;
-}					t_img;
 
 void				program(int argc, char **argv);
 

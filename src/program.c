@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:04:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/25 15:24:33 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/27 13:42:11 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	print_usage(char *binary_name)
 {
 	ft_putendl("Usage: ");
-	ft_putstr(argv[0]);
+	ft_putstr(binary_name);
 	ft_putendl(" <scene_file>");
 }
 

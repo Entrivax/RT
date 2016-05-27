@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 15:13:37 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/25 15:20:07 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/27 13:41:10 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int		expose_hook(t_env *env)
 {
-	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->win, env->bg_img.img, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/05/25 16:16:46 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/05/27 13:39:47 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ LIBFT=$(LIBFTFOLDER)/libft.a
 LIBMTXFOLDER=./libmtx
 LIBMTX=$(LIBMTXFOLDER)/libmtx.a
 EFLAGS=-Wall -Werror -Wextra -g
-IFLAGS=-I$(LIBFTFOLDER) -I$(LIBMTXFOLDER) -I./include -I$(LIBXFOLDER)
+IFLAGS=-I$(LIBFTFOLDER) -I$(LIBMTXFOLDER)/include -I./include -I$(LIBXFOLDER)
 ifeq ($(OUT),MAC)
   LFLAGS=-L$(LIBXFOLDER) -lmlx -framework OpenGL -framework AppKit -L$(LIBFTFOLDER) -lft -lmtx
 else
