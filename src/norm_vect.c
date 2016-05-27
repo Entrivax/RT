@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 18:12:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/25 18:17:36 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/27 14:40:39 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_mtx		norm_vect(t_mtx mtx)
 	double	length;
 	int		y;
 
-	out = mtx_init(1, 3);
+	out = mtx_init(4, 1);
 	length = 0;
 	y = -1;
 	while (++y < out.rows)
