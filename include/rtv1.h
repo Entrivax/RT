@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/27 13:40:47 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/30 14:04:23 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include "libmtx.h"
 # include "mlx.h"
 
+typedef struct		s_obj
+{
+	t_mtx			mtx;
+	t_mtx			trans;
+}					t_obj
+
 typedef struct		s_inter
 {
 	double			t;
@@ -29,6 +35,8 @@ typedef struct		s_ray
 {
 	t_mtx			dir;
 	t_mtx			pos;
+	t_obj			*closest;
+	double			t;
 }					t_ray;
 
 typedef struct		s_camera
