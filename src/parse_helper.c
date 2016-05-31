@@ -6,13 +6,13 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:53:25 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/31 13:09:09 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/31 14:57:20 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int				parse_resolution(char **line, int *i, t_resolution *res)
+int				parse_resolution(char **line, int *i, t_res *res)
 {
 	if (line[*i + 1] == NULL || line[*i + 2] == NULL ||
 		line[*i + 3] == NULL)
@@ -39,6 +39,21 @@ int				parse_vector3(char **line, int *i, t_mtx *v)
 	v->mtx[0] = ft_atof(line[*i + 1]);
 	v->mtx[1] = ft_atof(line[*i + 2]);
 	v->mtx[2] = ft_atof(line[*i + 3]); 
+	*i += 3;
+	return (1);
+}
+
+int				parse_color(char **line, int *i, t_rgb *rgb)
+{
+	if (line[*i + 1] == NULL || line[*i + 2] == NULL ||
+		line[*i + 3] == NULL)
+		return (0);
+	if (!ft_isnumber(line[*i + 1]) || !ft_isnumber(line[*i + 2]) ||
+		!ft_isnumber(line[*i + 3]))
+		return (0);
+	rgb->r = ft_fclamp(ft_atof(line[*i + 1]), 0, 1);
+	rgb->g = ft_fclamp(ft_atof(line[*i + 2]), 0, 1);
+	rgb->b = ft_fclamp(ft_atof(line[*i + 3]), 0, 1);
 	*i += 3;
 	return (1);
 }

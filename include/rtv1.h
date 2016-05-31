@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/31 12:32:46 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/31 14:57:13 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct		s_ray
 	double			t;
 }					t_ray;
 
+typedef struct		s_res
+{
+	int				width;
+	int				height;
+}					t_res;
+
 typedef struct		s_camera
 {
 	t_mtx			dir;
@@ -59,8 +65,8 @@ typedef struct		s_camera
 	double			rotx;
 	double			roty;
 	double			rotz;
-	double			width;
-	double			height;
+	double			fov;
+	t_res			res;
 }					t_camera;
 
 typedef struct		s_rgb
@@ -86,6 +92,7 @@ typedef struct		s_img
 	int				bytes_per_pixel;
 	int				size_line;
 	int				endian;
+	t_res			res;
 	int				width;
 	int				height;
 }					t_img;
@@ -113,5 +120,13 @@ int					expose_hook(t_env *env);
 int					loop_hook(t_env *env);
 
 t_mtx				norm_vect(t_mtx mtx);
+
+int					parse_resolution(char **line, int *i, t_res *res);
+int					parse_vector3(char **line, int *i, t_mtx *v);
+int					parse_color(char **line, int *i, t_rgb *rgb);
+int					parse_double(char **line, int *i, double *a);
+
+int					parse_scene(t_env *env, char **line);
+int					parse_camera(t_env *env, char **line);
 
 #endif
