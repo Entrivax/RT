@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/30 14:08:31 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/31 12:17:25 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static t_rgb	get_pixel_color(t_env *env, int x, int y)
 		}
 		current = current->next;
 	}
+	color = ray.closest != NULL ? ray.closest->color : env->scene->bgcolor;
 	return (color);
 }
 

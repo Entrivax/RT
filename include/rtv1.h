@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/30 14:04:23 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/05/31 12:32:46 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,18 @@
 # include "libmtx.h"
 # include "mlx.h"
 
+typedef struct		s_tobj
+{
+	t_mtx			rot;
+	t_mtx			trans;
+	t_mtx			scale;
+}					t_tobj;
+
 typedef struct		s_obj
 {
 	t_mtx			mtx;
 	t_mtx			trans;
+	t_rgb			color;
 }					t_obj
 
 typedef struct		s_inter

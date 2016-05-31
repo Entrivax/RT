@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/05/27 13:39:47 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/05/31 12:47:10 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,16 @@ OUT=LINUX
 NAME=rtv1
 SRCFOLDER=src/
 SRCFILES=expose_hook.c \
+		find_dist.c \
 		init_env.c \
 		init_img.c \
 		loop_hook.c \
 		main.c \
+		norm_vect.c \
+		parse_file.c \
 		program.c \
+		render_scene.c \
+		set_img_pixel.c \
 		set_mlx_hooks.c
 OBJFOLDER=obj/
 OBJ=$(addprefix $(OBJFOLDER),$(subst .c,.o,$(SRCFILES)))
