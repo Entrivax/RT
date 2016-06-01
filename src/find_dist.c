@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 14:09:33 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/30 14:35:03 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/01 15:36:01 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ double		find_dist(t_ray ray, t_obj *obj)
 	int		ret;
 	t_mtx	mtxs[2];
 
-	mtxs[0] = mtx_dotproduct(obj.mtx, ray.dir);
-	mtxs[1] = mtx_dotproduct(obj.mtx, ray.pos);
+	mtxs[0] = mtx_dotproduct(obj->mtx, ray.dir);
+	mtxs[1] = mtx_dotproduct(obj->mtx, ray.pos);
 	abc[0] = mtx_dot(ray.dir, mtxs[0], 0, 0);
 	abc[1] = 2 * mtx_dot(ray.dir, mtxs[1], 0, 0);
-	abc[2] = mtx_dot(ray.pos, mtxs[1]);
+	abc[2] = mtx_dot(ray.pos, mtxs[1], 0, 0);
 	if ((ret = solve_quadratic(abc, t, t + 1)) == 0)
 		return (-1);
 	if (ret == 1)

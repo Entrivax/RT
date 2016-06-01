@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:35:59 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/31 12:45:44 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/01 15:37:41 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	parse_error(int line_nbr)
 	return (-1);
 }
 
-int		*parse_file(t_env *env, int fd)
+int			*parse_file(t_env *env, int fd)
 {
 	char	*line;
 	char	**str;

@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 13:10:54 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/31 14:39:23 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/01 15:38:31 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		parse_camera_2(char **line, int *i, t_env *env, int *valid)
 	return (1);
 }
 
-int			parse_camera(t_env *env, char **line)
+int				parse_camera(t_env *env, char **line)
 {
 	int				i;
 	int				valid;

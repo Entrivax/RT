@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 15:21:22 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/01 15:36:31 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # include "libft.h"
 # include "libmtx.h"
 # include "mlx.h"
+
+# define LIMIT_MIN 0.00001
+
+typedef struct		s_rgb
+{
+	float			r;
+	float			g;
+	float			b;
+}					t_rgb;
 
 typedef struct		s_light
 {
@@ -41,7 +50,7 @@ typedef struct		s_obj
 	double			k_ambiant;
 	double			k_spec;
 	double			k_diffuse;
-}					t_obj
+}					t_obj;
 
 typedef struct		s_inter
 {
@@ -78,13 +87,6 @@ typedef struct		s_camera
 	double			fov;
 	t_res			res;
 }					t_camera;
-
-typedef struct		s_rgb
-{
-	float			r;
-	float			g;
-	float			b;
-}					t_rgb;
 
 typedef struct		s_scene
 {

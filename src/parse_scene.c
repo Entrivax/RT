@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 14:46:26 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/31 14:53:24 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/01 15:40:59 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 static int		parse_scene2(char **line, int *i, t_scene *scene)
 {
-	if (!ft_strcmp(line[*i], "background"))
+	if (!ft_strcmp(line[i], "ambiant"))
+	{
+		if (!parse_color(line, &i, &scene->i_ambiant))
+			return (return_print("Error parsing scene ambiant light", 0));
+		else
+			valid |= 1;
+	}
+	else if (!ft_strcmp(line[*i], "background"))
 	{
 		if (!parse_color(line, i, &scene->bgcolor))
 			return (return_print("Error parsing scene background color", 0));
@@ -38,14 +45,7 @@ int				parse_scene(t_env *env, char **line)
 	i = 0;
 	valid = 0;
 	while (line[++i])
-		if (!ft_strcmp(line[i], "ambiant"))
-		{
-			if (!parse_color(line, &i, &scene->i_ambiant))
-				return (return_print("Error parsing scene ambiant light", 0));
-			else
-				valid |= 1;
-		}
-		else if (parse_scene2(line, &i, scene) == 0)
+		if (parse_scene2(line, &i, scene) == 0)
 			return (0);
 	if (valid != 1)
 		free(scene);
