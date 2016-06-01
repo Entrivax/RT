@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 13:10:54 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 15:38:31 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:15:32 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int				parse_camera(t_env *env, char **line)
 
 	if (env->scene == NULL)
 		return (return_print("Error, a scene must be declared first", 0));
+	if (env->scene->camera == NULL && (env->scene->camera =
+		(t_camera *)ft_memalloc(sizeof(t_camera))) == NULL)
+		return (return_print("malloc error", 0));
 	i = 0;
 	valid = 0;
 	while (line[++i])

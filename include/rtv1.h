@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 15:36:31 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:08:39 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "mlx.h"
 
 # define LIMIT_MIN 0.00001
+# define POW2(x) (x*x)
 
 typedef struct		s_rgb
 {
@@ -121,24 +122,54 @@ typedef struct		s_env
 	t_mtx			cone_mtx;
 }					t_env;
 
+/*
+ * Program start method
+ */
+
 void				program(int argc, char **argv);
+
+/*
+ * Initialization methods
+ */
 
 t_env				*init_env(void);
 void				init_img(void *mlx, t_img *img, int width, int height);
+
+/*
+ * MLX methods
+ */
 
 void				set_img_pixel(t_img *img, int x, int y, t_rgb color);
 void				set_mlx_hooks(t_env *env);
 int					expose_hook(t_env *env);
 int					loop_hook(t_env *env);
 
+/*
+ * Math method
+ */
+
+char				solve_quadratic(double *abc, double *t1, double *t2);
+
 t_mtx				norm_vect(t_mtx mtx);
 
+/*
+ * Parse file method
+ */
+
 int					*parse_file(t_env *env, int fd);
+
+/*
+ * Parsing helper methods
+ */
 
 int					parse_resolution(char **line, int *i, t_res *res);
 int					parse_vector3(char **line, int *i, t_mtx *v);
 int					parse_color(char **line, int *i, t_rgb *rgb);
 int					parse_double(char **line, int *i, double *a);
+
+/*
+ * Object parsing methods
+ */
 
 int					parse_scene(t_env *env, char **line);
 int					parse_camera(t_env *env, char **line);
