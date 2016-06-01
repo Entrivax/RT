@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/05/31 14:55:19 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/01 15:25:33 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,14 @@ SRCFILES=expose_hook.c \
 		main.c \
 		norm_vect.c \
 		parse_camera.c \
+		parse_cone.c \
+		parse_cylinder.c \
 		parse_file.c \
 		parse_helper.c \
+		parse_light.c \
+		parse_plane.c \
 		parse_scene.c \
+		parse_sphere.c \
 		program.c \
 		render_scene.c \
 		set_img_pixel.c \

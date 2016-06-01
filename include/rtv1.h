@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/31 14:57:13 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/01 15:21:22 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include "libft.h"
 # include "libmtx.h"
 # include "mlx.h"
+
+typedef struct		s_light
+{
+	t_rgb			color;
+	t_mtx			pos;
+}					t_light;
 
 typedef struct		s_tobj
 {
@@ -31,6 +37,10 @@ typedef struct		s_obj
 	t_mtx			mtx;
 	t_mtx			trans;
 	t_rgb			color;
+	double			shine;
+	double			k_ambiant;
+	double			k_spec;
+	double			k_diffuse;
 }					t_obj
 
 typedef struct		s_inter
@@ -121,6 +131,8 @@ int					loop_hook(t_env *env);
 
 t_mtx				norm_vect(t_mtx mtx);
 
+int					*parse_file(t_env *env, int fd);
+
 int					parse_resolution(char **line, int *i, t_res *res);
 int					parse_vector3(char **line, int *i, t_mtx *v);
 int					parse_color(char **line, int *i, t_rgb *rgb);
@@ -128,5 +140,9 @@ int					parse_double(char **line, int *i, double *a);
 
 int					parse_scene(t_env *env, char **line);
 int					parse_camera(t_env *env, char **line);
+int					parse_cone(t_env *env, char **line);
+int					parse_cylinder(t_env *env, char **line);
+int					parse_plane(t_env *env, char **line);
+int					parse_sphere(t_env *env, char **line);
 
 #endif
