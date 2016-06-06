@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 11:47:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 15:03:07 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 17:08:05 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int		init_camera(t_camera *camera)
 	set_vector(&camera->vp_up_left, -camera->vp_width / 2.,
 		camera->vp_height / 2., camera->vp_dist);
 	set_vector(&camera->x_indent, camera->vp_width / camera->res.width, 0, 0);
-	set_vector(&camera->y_indent, 0, -camera->vp_height / camera->res.height, 0);
+	set_vector(&camera->y_indent, 0, -camera->vp_height / camera->res.height,
+		0);
 	camera->dir = mtx_dotproduct(rot, camera->dir);
 	camera->x_indent = mtx_dotproduct(rot, camera->x_indent);
 	camera->y_indent = mtx_dotproduct(rot, camera->y_indent);

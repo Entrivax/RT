@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:35:59 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 16:28:16 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 17:09:29 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int	parse_line(t_env *env, char **line)
 		return (delete_line_array(line, parse_cylinder(env, line)));
 	else if (!ft_strcmp(line[0], "cone"))
 		return (delete_line_array(line, parse_cone(env, line)));
-	//else if (!ft_strcmp(line[0], "light"))
-	//	return (delete_line_array(line, parse_light(env, line)));
+	else if (!ft_strcmp(line[0], "light"))
+		return (delete_line_array(line, parse_light(env, line)));
 	return (delete_line_array(line, 0));
 }
 

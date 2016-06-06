@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 16:47:25 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 17:10:46 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ int					parse_cone(t_env *env, char **line);
 int					parse_cylinder(t_env *env, char **line);
 int					parse_plane(t_env *env, char **line);
 int					parse_sphere(t_env *env, char **line);
+int					parse_light(t_env *env, char **line);
 
 /*
 ** RT methods

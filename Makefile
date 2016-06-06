@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/06 16:49:11 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/06 17:11:16 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCFILES=expose_hook.c \
 		parse_cylinder.c \
 		parse_file.c \
 		parse_helper.c \
+		parse_helper_2.c \
 		parse_light.c \
 		parse_plane.c \
 		parse_scene.c \
