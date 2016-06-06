@@ -6,20 +6,24 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/01 16:21:36 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/06 16:49:11 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OUT=LINUX
-#OUT=MAC
+#OUT=LINUX
+OUT=MAC
 NAME=rtv1
 SRCFOLDER=src/
 SRCFILES=expose_hook.c \
 		find_dist.c \
+		init_camera.c \
 		init_env.c \
 		init_img.c \
+		init_win.c \
 		loop_hook.c \
 		main.c \
+		mtx_createrotmtx.c \
+		mtx_createscalemtx.c \
 		norm_vect.c \
 		parse_camera.c \
 		parse_cone.c \
@@ -35,7 +39,10 @@ SRCFILES=expose_hook.c \
 		return_print.c \
 		set_img_pixel.c \
 		set_mlx_hooks.c \
-		solve_quadratic.c
+		set_objenv.c \
+		set_vector.c \
+		solve_quadratic.c \
+		transform_object.c
 OBJFOLDER=obj/
 OBJ=$(addprefix $(OBJFOLDER),$(subst .c,.o,$(SRCFILES)))
 SRC=$(addprefix $(SRCFOLDER),$(SRCFILES))
@@ -53,9 +60,9 @@ LIBMTX=$(LIBMTXFOLDER)/libmtx.a
 EFLAGS=-Wall -Werror -Wextra -g
 IFLAGS=-I$(LIBFTFOLDER) -I$(LIBMTXFOLDER)/include -I./include -I$(LIBXFOLDER)
 ifeq ($(OUT),MAC)
-  LFLAGS=-L$(LIBXFOLDER) -lmlx -framework OpenGL -framework AppKit -L$(LIBFTFOLDER) -lft -lmtx
+  LFLAGS=-L$(LIBXFOLDER) -lmlx -framework OpenGL -framework AppKit -L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx
 else
-  LFLAGS=-L$(LIBXFOLDER) -lmlx_Linux -lXext -lX11 -L$(LIBFTFOLDER) -lft -lmtx -lm
+  LFLAGS=-L$(LIBXFOLDER) -lmlx_Linux -lXext -lX11 -L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx -lm
 endif
 CFLAGS=-D $(OUT)
 

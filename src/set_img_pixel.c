@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 17:01:21 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/25 18:20:09 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 16:42:50 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ static int	color_to_int(t_rgb *color)
 
 void		set_img_pixel(t_img *img, int x, int y, t_rgb color)
 {
-	if (x >= 0 && x < img->width && y >= 0 && y < img->height)
+	if (x >= 0 && x < img->res.width && y >= 0 && y < img->res.height)
 	{
 		(*(unsigned int *)(img->img_writable + x * img->bytes_per_pixel +
-			y * img->size_line)) = mlx_get_color_value(env->mlx,
-			color_to_int(&color));
+			y * img->size_line)) = color_to_int(&color);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:28:51 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 14:27:46 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 14:48:11 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	parse_cylinder_4(char **line, int *i, t_obj *obj, t_tobj *tobj)
 			return (return_print("Error parsing cylinder radius", 0));
 		else
 		{
-			tobj->scale.mtx[1] = tobj->scale.mtx[0];
+			tobj->scale = mtx_createscalemtx(tobj->scale.mtx[0],
+				tobj->scale.mtx[0], tobj->scale.mtx[0]);
 			i[1] |= 128;
 		}
 	}
@@ -64,14 +65,14 @@ static int	parse_cylinder_2(char **line, int *i, t_obj *obj, t_tobj *tobj)
 {
 	if (!ft_strcmp(line[i[0]], "position"))
 	{
-		if (!parse_vector3(line, i, &tobj->trans))
+		if (!parse_mtx_trans(line, i, &tobj->trans))
 			return (return_print("Error parsing cylinder position", 0));
 		else
 			i[1] |= 1;
 	}
 	else if (!ft_strcmp(line[i[0]], "rotation"))
 	{
-		if (!parse_vector3(line, i, &tobj->rot))
+		if (!parse_mtx_rot(line, i, &tobj->rot))
 			return (return_print("Error parsing cylinder rotation", 0));
 		else
 			i[1] |= 2;
@@ -105,9 +106,9 @@ int			parse_cylinder(t_env *env, char **line)
 		if (parse_cylinder_2(line, i, obj, &tobj) == 0)
 			return (0);
 	transform_object(obj, &tobj);
-	if (env->scene->primitives == NULL)
-		env->scene->primitives = lst;
+	if (env->scene->objects == NULL)
+		env->scene->objects = lst;
 	else
-		ft_lstadd(&(env->scene->primitives), lst);
+		ft_lstadd(&(env->scene->objects), lst);
 	return (i[1] == 255 ? 1 : return_print("error cylinder imcomplete", 0));
 }

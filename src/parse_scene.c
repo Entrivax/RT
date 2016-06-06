@@ -6,20 +6,20 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 14:46:26 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 15:40:59 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:14:19 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static int		parse_scene2(char **line, int *i, t_scene *scene)
+static int		parse_scene2(char **line, int *i, t_scene *scene, int *valid)
 {
-	if (!ft_strcmp(line[i], "ambiant"))
+	if (!ft_strcmp(line[*i], "ambiant"))
 	{
-		if (!parse_color(line, &i, &scene->i_ambiant))
+		if (!parse_color(line, i, &scene->i_ambiant))
 			return (return_print("Error parsing scene ambiant light", 0));
 		else
-			valid |= 1;
+			*valid |= 1;
 	}
 	else if (!ft_strcmp(line[*i], "background"))
 	{
@@ -45,7 +45,7 @@ int				parse_scene(t_env *env, char **line)
 	i = 0;
 	valid = 0;
 	while (line[++i])
-		if (parse_scene2(line, &i, scene) == 0)
+		if (parse_scene2(line, &i, scene, &valid) == 0)
 			return (0);
 	if (valid != 1)
 		free(scene);

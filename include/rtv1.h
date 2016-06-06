@@ -6,14 +6,17 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 16:50:48 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 16:47:25 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RTV1_H
 # define RTV1_H
 
+# include <fcntl.h>
+# include <math.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # include "libft.h"
 # include "libmtx.h"
@@ -79,6 +82,7 @@ typedef struct		s_camera
 	t_mtx			pos;
 	t_mtx			x_indent;
 	t_mtx			y_indent;
+	t_mtx			vp_up_left;
 	double			vp_width;
 	double			vp_height;
 	double			vp_dist;
@@ -106,8 +110,6 @@ typedef struct		s_img
 	int				size_line;
 	int				endian;
 	t_res			res;
-	int				width;
-	int				height;
 }					t_img;
 
 typedef struct		s_env
@@ -122,6 +124,13 @@ typedef struct		s_env
 	t_mtx			cone_mtx;
 }					t_env;
 
+typedef struct		s_objenv
+{
+	t_env			*env;
+	t_tobj			*tobj;
+	t_obj			*obj;
+}					t_objenv;
+
 /*
 ** Program start method
 */
@@ -133,7 +142,9 @@ void				program(int argc, char **argv);
 */
 
 t_env				*init_env(void);
-void				init_img(void *mlx, t_img *img, int width, int height);
+int					init_win(t_env *env);
+int					init_img(void *mlx, t_img *img, int width, int height);
+int					init_camera(t_camera *camera);
 
 /*
 ** MLX methods
@@ -150,13 +161,18 @@ int					loop_hook(t_env *env);
 
 char				solve_quadratic(double *abc, double *t1, double *t2);
 
+void				set_vector(t_mtx *mtx, double x, double y, double z);
 t_mtx				norm_vect(t_mtx mtx);
+t_mtx				mtx_createrotmtx(double rotx, double roty, double rotz);
+t_mtx				mtx_applyrot(t_mtx *mtx, double rotx, double roty, double rotz);
+t_mtx				mtx_createscalemtx(double scalex, double scaley, double scalez);
+void				transform_object(t_obj *obj, t_tobj *tobj);
 
 /*
 ** Parse file method
 */
 
-int					*parse_file(t_env *env, int fd);
+int					parse_file(t_env *env, char *file);
 
 /*
 ** Parsing helper methods
@@ -166,6 +182,8 @@ int					parse_resolution(char **line, int *i, t_res *res);
 int					parse_vector3(char **line, int *i, t_mtx *v);
 int					parse_color(char **line, int *i, t_rgb *rgb);
 int					parse_double(char **line, int *i, double *a);
+int					parse_mtx_trans(char **line, int *i, t_mtx *v);
+int					parse_mtx_rot(char **line, int *i, t_mtx *v);
 
 /*
 ** Object parsing methods
@@ -179,8 +197,15 @@ int					parse_plane(t_env *env, char **line);
 int					parse_sphere(t_env *env, char **line);
 
 /*
+** RT methods
+*/
+void				render_scene(t_env *env);
+double				find_dist(t_ray ray, t_obj *obj);
+
+/*
 ** Utils methods
 */
 int					return_print(char *str, int return_state);
+t_objenv			set_objenv(t_env *env, t_obj *obj, t_tobj *tobj);
 
 #endif

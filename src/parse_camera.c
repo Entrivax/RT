@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 13:10:54 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 16:25:10 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 13:21:48 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int				parse_camera(t_env *env, char **line)
 	{
 		if (!ft_strcmp(line[i], "screen"))
 		{
-			if (!parse_resolution(line, &i, env->scene->camera.res))
+			if (!parse_resolution(line, &i, &env->scene->camera->res))
 				return (return_print("Error parsing camera resolution", 0));
 			else
 				valid |= 1;

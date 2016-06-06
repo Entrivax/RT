@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/31 12:17:25 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:50:10 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ static t_rgb	get_pixel_color(t_env *env, int x, int y)
 	double	t;
 
 	ray.dir = norm_vect(mtx_add(env->scene->camera->dir, mtx_add(mtx_mult(
-		env->scene->x_indent, x), mtx_mult(env->scene->y_indent, y))));
-	ray.pos = env->scene->camera.pos;
+		env->scene->camera->x_indent, x),
+		mtx_mult(env->scene->camera->y_indent, y))));
+	ray.pos = env->scene->camera->pos;
+	ray.closest = NULL;
+	current = env->scene->objects;
 	while (current)
 	{
 		if ((t = find_dist(ray, (t_obj *)current->content)) > LIMIT_MIN
@@ -42,10 +45,10 @@ void			render_scene(t_env *env)
 	int		y;
 
 	x = -1;
-	while (++x < env->scene->camera->width)
+	while (++x < env->scene->camera->res.width)
 	{
 		y = -1;
-		while (++y < env->scene->camera->height)
-			set_img_pixel(&env.img, x, y, get_pixel_color(env, x, y));
+		while (++y < env->scene->camera->res.height)
+			set_img_pixel(&env->bg_img, x, y, get_pixel_color(env, x, y));
 	}
 }

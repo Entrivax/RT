@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:04:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/27 13:42:11 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 16:47:53 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void		program(int argc, char **argv)
 		exit(-1);
 	if (parse_file(env, argv[1]) == -1)
 		exit(-1);
+	if (init_img(env->mlx, &env->bg_img, env->scene->camera->res.width,
+		env->scene->camera->res.height) == -1)
+		exit(-1);
+	init_win(env);
 	set_mlx_hooks(env);
 	render_scene(env);
 	mlx_loop(env->mlx);

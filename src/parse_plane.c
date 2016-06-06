@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:01:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 13:26:45 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:11:47 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ static int	parse_plane_2(char **line, int *i, t_obj *obj, t_tobj *tobj)
 {
 	if (!ft_strcmp(line[i[0]], "position"))
 	{
-		if (!parse_vector3(line, i, &tobj->trans))
+		if (!parse_mtx_trans(line, i, &tobj->trans))
 			return (return_print("Error parsing plane position", 0));
 		else
 			i[1] |= 1;
 	}
 	else if (!ft_strcmp(line[i[0]], "rotation"))
 	{
-		if (!parse_vector3(line, i, &tobj->rot))
+		if (!parse_mtx_rot(line, i, &tobj->rot))
 			return (return_print("Error parsing plane rotation", 0));
 		else
 			i[1] |= 2;
@@ -77,7 +77,7 @@ static int	parse_plane_2(char **line, int *i, t_obj *obj, t_tobj *tobj)
 	return (parse_plane_3(line, i, obj, tobj));
 }
 
-static void	set_plane_mtx(tobj *tobj)
+static void	set_plane_mtx(t_tobj *tobj)
 {
 	tobj->scale.mtx[0] = 1;
 	tobj->scale.mtx[1] = 1;
@@ -97,6 +97,7 @@ int			parse_plane(t_env *env, char **line)
 		(lst = ft_lstnewfrom(obj, sizeof(*obj))) == NULL)
 		return (return_print("malloc error", 0));
 	obj->mtx = env->plane_mtx;
+	tobj.scale = mtx_createscalemtx(1, 1, 1);
 	i[0] = 0;
 	i[1] = 0;
 	set_plane_mtx(&tobj);
@@ -104,9 +105,9 @@ int			parse_plane(t_env *env, char **line)
 		if (parse_plane_2(line, i, obj, &tobj) == 0)
 			return (0);
 	transform_object(obj, &tobj);
-	if (env->scene->primitives == NULL)
-		env->scene->primitives = lst;
+	if (env->scene->objects == NULL)
+		env->scene->objects = lst;
 	else
-		ft_lstadd(&(env->scene->primitives), lst);
+		ft_lstadd(&(env->scene->objects), lst);
 	return (i[1] == 127 ? 1 : return_print("error plane imcomplete", 0));
 }

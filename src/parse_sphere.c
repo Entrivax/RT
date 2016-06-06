@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 12:28:17 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 13:08:45 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:14:42 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	parse_sphere_4(char **line, int *i, t_obj *obj, t_tobj *tobj)
 			return (return_print("Error parsing sphere radius", 0));
 		else
 		{
-			tobj->scale.mtx[1] = tobj->scale.mtx[0];
-			tobj->scale.mtx[2] = tobj->scale.mtx[0];
+			tobj->scale = mtx_createscalemtx(tobj->scale.mtx[0],
+				tobj->scale.mtx[0], tobj->scale.mtx[0]);
 			i[1] |= 2;
 		}
 	}
@@ -93,15 +93,16 @@ int			parse_sphere(t_env *env, char **line)
 		(lst = ft_lstnewfrom(obj, sizeof(*obj))) == NULL)
 		return (return_print("malloc error", 0));
 	obj->mtx = env->sphere_mtx;
+	tobj.rot = mtx_createscalemtx(1, 1, 1);
 	i[0] = 0;
 	i[1] = 0;
 	while (line[++i[0]])
-		if (parse_sphere_2(line, i, obj, &t_obj) == 0)
+		if (parse_sphere_2(line, i, obj, &tobj) == 0)
 			return (0);
 	transform_object(obj, &tobj);
-	if (env->scene->primitives == NULL)
-		env->scene->primitives = lst;
+	if (env->scene->objects == NULL)
+		env->scene->objects = lst;
 	else
-		ft_lstadd(&(env->scene->primitives), lst);
+		ft_lstadd(&(env->scene->objects), lst);
 	return (i[1] == 127 ? 1 : return_print("error sphere imcomplete", 0));
 }

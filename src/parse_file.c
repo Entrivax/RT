@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:35:59 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 15:37:41 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/06 16:28:16 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int	parse_line(t_env *env, char **line)
 		return (delete_line_array(line, parse_cylinder(env, line)));
 	else if (!ft_strcmp(line[0], "cone"))
 		return (delete_line_array(line, parse_cone(env, line)));
-	else if (!ft_strcmp(line[0], "light"))
-		return (delete_line_array(line, parse_light(env, line)));
+	//else if (!ft_strcmp(line[0], "light"))
+	//	return (delete_line_array(line, parse_light(env, line)));
 	return (delete_line_array(line, 0));
 }
 
@@ -53,14 +53,17 @@ static int	parse_error(int line_nbr)
 	return (-1);
 }
 
-int			*parse_file(t_env *env, int fd)
+int			parse_file(t_env *env, char *file)
 {
 	char	*line;
 	char	**str;
 	int		l;
+	int		fd;
 
 	line = NULL;
 	l = 0;
+	if ((fd = open(file, O_RDONLY)) < 0)
+		return (return_print("error while opening the file", -1));
 	while (get_next_line(fd, &line) > 0)
 	{
 		++l;
@@ -75,5 +78,6 @@ int			*parse_file(t_env *env, int fd)
 			return (parse_error(l));
 		free(line);
 	}
+	close(fd);
 	return (0);
 }
