@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 15:50:10 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/07 13:42:08 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ static t_rgb	get_pixel_color(t_env *env, int x, int y)
 	t_list	*current;
 	double	t;
 
-	ray.dir = norm_vect(mtx_add(env->scene->camera->dir, mtx_add(mtx_mult(
-		env->scene->camera->x_indent, x),
-		mtx_mult(env->scene->camera->y_indent, y))));
+	ray.dir = norm_vect(mtx_add(env->scene->camera->dir, mtx_add(mtx_mult(env->
+		scene->camera->x_indent, x - env->scene->camera->res.width / 2), mtx_mult(
+		env->scene->camera->y_indent, y - env->scene->camera->res.height / 2))));
 	ray.pos = env->scene->camera->pos;
 	ray.closest = NULL;
 	current = env->scene->objects;
+	if (x == env->scene->camera->res.width / 2 && y == env->scene->camera->res.height - 1)
+		ft_putendl("middle of screen breakpoint");
 	while (current)
 	{
 		if ((t = find_dist(ray, (t_obj *)current->content)) > LIMIT_MIN

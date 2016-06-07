@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:01:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 15:11:47 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/07 15:55:04 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,6 @@ static int	parse_plane_2(char **line, int *i, t_obj *obj, t_tobj *tobj)
 	return (parse_plane_3(line, i, obj, tobj));
 }
 
-static void	set_plane_mtx(t_tobj *tobj)
-{
-	tobj->scale.mtx[0] = 1;
-	tobj->scale.mtx[1] = 1;
-	tobj->scale.mtx[2] = 1;
-}
-
 int			parse_plane(t_env *env, char **line)
 {
 	int			i[2];
@@ -100,7 +93,6 @@ int			parse_plane(t_env *env, char **line)
 	tobj.scale = mtx_createscalemtx(1, 1, 1);
 	i[0] = 0;
 	i[1] = 0;
-	set_plane_mtx(&tobj);
 	while (line[++i[0]])
 		if (parse_plane_2(line, i, obj, &tobj) == 0)
 			return (0);
