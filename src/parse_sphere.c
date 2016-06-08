@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 12:28:17 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 15:14:42 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/08 15:22:25 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	parse_sphere_2(char **line, int *i, t_obj *obj, t_tobj *tobj)
 {
 	if (!ft_strcmp(line[i[0]], "position"))
 	{
-		if (!parse_vector3(line, i, &tobj->trans))
+		if (!parse_mtx_trans(line, i, &tobj->trans))
 			return (return_print("Error parsing sphere position", 0));
 		else
 			i[1] |= 1;
