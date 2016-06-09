@@ -1,3 +1,4 @@
 https://people.cs.clemson.edu/~dhouse/courses/405/notes/quadrics.pdf
 http://www.trenki.net/content/view/15/35/
 ftp://download.intel.com/design/PentiumIII/sml/24504301.pdf
+http://users.wowway.com/~phkahler/quadrics.pdf
