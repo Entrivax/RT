@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/06 17:11:16 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/13 14:56:16 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCFILES=expose_hook.c \
 		init_env.c \
 		init_img.c \
 		init_win.c \
+		key_hook.c \
 		loop_hook.c \
 		main.c \
 		mtx_createrotmtx.c \

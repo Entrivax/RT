@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 17:10:46 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/13 15:36:18 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# include "keycodes.h"
 # include "libft.h"
 # include "libmtx.h"
 # include "mlx.h"
@@ -49,6 +50,7 @@ typedef struct		s_obj
 {
 	t_mtx			mtx;
 	t_mtx			trans;
+	t_mtx			i_trans;
 	t_rgb			color;
 	double			shine;
 	double			k_ambiant;
@@ -154,6 +156,7 @@ void				set_img_pixel(t_img *img, int x, int y, t_rgb color);
 void				set_mlx_hooks(t_env *env);
 int					expose_hook(t_env *env);
 int					loop_hook(t_env *env);
+int					key_hook(int keycode, t_env *env);
 
 /*
 ** Math method
