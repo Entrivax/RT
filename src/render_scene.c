@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/07 13:42:08 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/13 17:54:40 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static t_rgb	get_pixel_color(t_env *env, int x, int y)
 	ray.pos = env->scene->camera->pos;
 	ray.closest = NULL;
 	current = env->scene->objects;
-	if (x == env->scene->camera->res.width / 2 && y == env->scene->camera->res.height - 1)
+	if (x == env->scene->camera->res.width / 2 && y == env->scene->camera->res.height / 2)
 		ft_putendl("middle of screen breakpoint");
 	while (current)
 	{
 		if ((t = find_dist(ray, (t_obj *)current->content)) > LIMIT_MIN
-			&& t < ray.t)
+			&& (t < ray.t || ray.closest == NULL))
 		{
 			ray.t = t;
 			ray.closest = (t_obj *)current->content;
