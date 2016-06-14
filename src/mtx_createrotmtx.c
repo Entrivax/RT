@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 12:12:12 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 15:04:17 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/14 14:41:18 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_mtx			mtx_createrotmtx(double rotx, double roty, double rotz)
 	mtx.mtx[8] = -cosin[0] * cosin[3] * cosin[4] + cosin[1] * cosin[5];
 	mtx.mtx[9] = cosin[0] * cosin[3] * cosin[5] + cosin[1] * cosin[4];
 	mtx.mtx[10] = cosin[0] * cosin[2];
+	mtx.mtx[15] = 1;
 	return (mtx);
 }
 

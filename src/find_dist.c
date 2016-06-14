@@ -6,11 +6,12 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 14:09:33 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/13 17:56:15 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/14 14:47:33 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "quadric_shortcuts.h"
 
 double		find_dist(t_ray ray, t_obj *obj)
 {
@@ -49,12 +50,13 @@ double		find_dist(t_ray ray, t_obj *obj)
 	v[7] = mtx_mult(ray.pos, 2);*/
 
 	mtxs[2] = mtx_product(obj->trans, obj->mtx);
-	mtxs[1] = mtx_product(obj->i_trans, ray.dir);
 	mtxs[0] = mtx_product(obj->i_trans, ray.pos);
-/*	abc[0] = mtx_dot(ray.dir, mtxs[0], 0, 0);
-	abc[1] = 2 * mtx_dot(ray.dir, mtxs[1], 0, 0);
-	abc[2] = mtx_dot(ray.pos, mtxs[1], 0, 0);*/
-	abc[0] = VOM(obj->mtx, 0, 0) * POW2(mtxs[1].mtx[0])
+	mtxs[1] = mtx_product(obj->i_trans, ray.dir);
+
+/*	abc[0] = mtx_dot(ray.dir, mtxs[1], 0, 0);
+	abc[1] = 2 * mtx_dot(ray.dir, mtxs[0], 0, 0);
+	abc[2] = mtx_dot(ray.pos, mtxs[0], 0, 0);*/
+/*	abc[0] = VOM(obj->mtx, 0, 0) * POW2(mtxs[1].mtx[0])
 		+ VOM(obj->mtx, 1, 0) * POW2(mtxs[1].mtx[1])
 		+ VOM(obj->mtx, 2, 0) * POW2(mtxs[1].mtx[2])
 		+ VOM(obj->mtx, 3, 0) * mtxs[1].mtx[0];
@@ -69,10 +71,17 @@ double		find_dist(t_ray ray, t_obj *obj)
 		+ VOM(obj->mtx, 1, 0) * POW2(mtxs[0].mtx[1])
 		+ VOM(obj->mtx, 2, 0) * POW2(mtxs[0].mtx[2])
 		+ VOM(obj->mtx, 3, 0) * mtxs[0].mtx[0]
-		+ obj->mtx.mtx[7] * mtxs[0].mtx[0] + obj->mtx.mtx[10] * mtxs[0].mtx[1] + obj->mtx.mtx[11] * mtxs[0].mtx[2] + obj->mtx.mtx[15];
+		+ obj->mtx.mtx[7] * mtxs[0].mtx[0] + obj->mtx.mtx[10] * mtxs[0].mtx[1] + obj->mtx.mtx[11] * mtxs[0].mtx[2] + obj->mtx.mtx[15];*/
 /*	abc[0] = mtx_dot(obj->mtx, v[0], 0, 0) + mtx_dot(obj->mtx, v[1], 1, 0);
 	abc[1] = mtx_dot(obj->mtx, v[2], 0, 0) + mtx_dot(obj->mtx, v[3], 1, 0) + mtx_dot(obj->mtx, v[4], 2, 0);
 	abc[2] = mtx_dot(obj->mtx, v[5], 0, 0) + mtx_dot(obj->mtx, v[6], 1, 0) + mtx_dot(obj->mtx, v[7], 2, 0) + VOM(obj->mtx, 3, 3);*/
+	abc[0] = AX * POW2(XD) + BX * POW2(YD) + CX * POW2(ZD)
+		+ DX * XD * YD + EX * XD * ZD + FX * YD * ZD;
+	abc[1] = 2 * (AX * XO * XD + BX * YO * YD + CX * ZO * ZD)
+		+ DX * XO * XD * YO * YD + EX * XO * XD * ZO * ZD
+		+ FX * YO * YD * ZO * ZD + GX * XD + HX * YD + IX * ZD;
+	abc[2] = AX * XO + BX * YO + CX * ZO + DX * XO * YO
+		+ EX * XO * ZO + FX * YO * ZO + GX * XO + HX * YO + IX * ZO + JX;
 	if ((ret = solve_quadratic(abc, t, t + 1)) == 0)
 		return (-1);
 	if (ret == 1)
