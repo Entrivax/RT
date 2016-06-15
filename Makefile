@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/13 14:56:16 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/15 17:12:15 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@
 OUT=MAC
 NAME=rtv1
 SRCFOLDER=src/
-SRCFILES=expose_hook.c \
+SRCFILES=compute_light.c \
+		expose_hook.c \
+		find_closest.c \
 		find_dist.c \
 		init_camera.c \
 		init_env.c \
