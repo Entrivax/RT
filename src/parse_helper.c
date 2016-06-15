@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:53:25 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 17:09:02 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/15 12:38:57 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int				parse_vector3(char **line, int *i, t_mtx *v)
 	v->mtx[0] = ft_atof(line[*i + 1]);
 	v->mtx[1] = ft_atof(line[*i + 2]);
 	v->mtx[2] = ft_atof(line[*i + 3]);
+	v->mtx[3] = 1;
 	*i += 3;
 	return (1);
 }

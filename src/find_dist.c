@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 14:09:33 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/14 14:47:33 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/15 15:43:04 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,70 +18,18 @@ double		find_dist(t_ray ray, t_obj *obj)
 	double	abc[3];
 	double	t[2];
 	int		ret;
-	t_mtx	mtxs[3];
-	/*t_mtx	v[8];
+	t_mtx	mtxs[2];
 
-	set_vector(v,	POW2(VOM(ray.dir, 0, 0)),
-					POW2(VOM(ray.dir, 1, 0)),
-					POW2(VOM(ray.dir, 2, 0)));
-
-	set_vector(v + 1,	2 * VOM(ray.dir, 0, 0) * VOM(ray.dir, 1, 0),
-						2 * VOM(ray.dir, 1, 0) * VOM(ray.dir, 2, 0),
-						2 * VOM(ray.dir, 0, 0) * VOM(ray.dir, 2, 0));
-
-	set_vector(v + 2,	2 * VOM(ray.dir, 0, 0) * VOM(ray.pos, 0, 0),
-						2 * VOM(ray.dir, 1, 0) * VOM(ray.pos, 1, 0),
-						2 * VOM(ray.dir, 2, 0) * VOM(ray.pos, 2, 0));
-
-	set_vector(v + 3,	2 * VOM(ray.dir, 0, 0) * VOM(ray.pos, 1, 0) + 2 * VOM(ray.pos, 0, 0) * VOM(ray.dir, 1, 0),
-						2 * VOM(ray.dir, 2, 0) * VOM(ray.pos, 1, 0) + 2 * VOM(ray.pos, 2, 0) * VOM(ray.dir, 1, 0),
-						2 * VOM(ray.dir, 2, 0) * VOM(ray.pos, 0, 0) + 2 * VOM(ray.pos, 2, 0) * VOM(ray.dir, 0, 0));
-
-	v[4] = mtx_mult(ray.dir, 2);
-
-	set_vector(v + 5,	POW2(VOM(ray.pos, 0, 0)),
-						POW2(VOM(ray.pos, 1, 0)),
-						POW2(VOM(ray.pos, 2, 0)));
-
-	set_vector(v + 6,	2 * VOM(ray.pos, 0, 0) * VOM(ray.pos, 1, 0),
-						2 * VOM(ray.pos, 1, 0) * VOM(ray.pos, 2, 0),
-						2 * VOM(ray.pos, 0, 0) * VOM(ray.pos, 2, 0));
-
-	v[7] = mtx_mult(ray.pos, 2);*/
-
-	mtxs[2] = mtx_product(obj->trans, obj->mtx);
 	mtxs[0] = mtx_product(obj->i_trans, ray.pos);
 	mtxs[1] = mtx_product(obj->i_trans, ray.dir);
-
-/*	abc[0] = mtx_dot(ray.dir, mtxs[1], 0, 0);
-	abc[1] = 2 * mtx_dot(ray.dir, mtxs[0], 0, 0);
-	abc[2] = mtx_dot(ray.pos, mtxs[0], 0, 0);*/
-/*	abc[0] = VOM(obj->mtx, 0, 0) * POW2(mtxs[1].mtx[0])
-		+ VOM(obj->mtx, 1, 0) * POW2(mtxs[1].mtx[1])
-		+ VOM(obj->mtx, 2, 0) * POW2(mtxs[1].mtx[2])
-		+ VOM(obj->mtx, 3, 0) * mtxs[1].mtx[0];
-	abc[1] = 2 * (obj->mtx.mtx[0] * mtxs[0].mtx[0] * mtxs[1].mtx[0] // 2*Axoxd
-		+ obj->mtx.mtx[1] * mtxs[0].mtx[1] * mtxs[1].mtx[1] // + 2*Byoyd
-		+ obj->mtx.mtx[2] * mtxs[0].mtx[2] * mtxs[1].mtx[2]) // + 2*Czozd
-		+ obj->mtx.mtx[3] * (mtxs[0].mtx[0] * mtxs[1].mtx[1] + mtxs[0].mtx[1] * mtxs[1].mtx[0]) // + D(xoyd + yoxd)
-		+ obj->mtx.mtx[5] * (mtxs[0].mtx[0] * mtxs[1].mtx[2] + mtxs[0].mtx[2] * mtxs[1].mtx[0]) // + E(xozd + zoxd)
-		+ obj->mtx.mtx[6] * (mtxs[0].mtx[1] * mtxs[1].mtx[2] + mtxs[0].mtx[2] * mtxs[1].mtx[1]) // + F(yozd + zoyd)
-		+ obj->mtx.mtx[7] * mtxs[1].mtx[0] + obj->mtx.mtx[10] * mtxs[1].mtx[1] + obj->mtx.mtx[11] * mtxs[1].mtx[2]; // + Gxd + Hyd + Izd
-	abc[2] = VOM(obj->mtx, 0, 0) * POW2(mtxs[0].mtx[0])
-		+ VOM(obj->mtx, 1, 0) * POW2(mtxs[0].mtx[1])
-		+ VOM(obj->mtx, 2, 0) * POW2(mtxs[0].mtx[2])
-		+ VOM(obj->mtx, 3, 0) * mtxs[0].mtx[0]
-		+ obj->mtx.mtx[7] * mtxs[0].mtx[0] + obj->mtx.mtx[10] * mtxs[0].mtx[1] + obj->mtx.mtx[11] * mtxs[0].mtx[2] + obj->mtx.mtx[15];*/
-/*	abc[0] = mtx_dot(obj->mtx, v[0], 0, 0) + mtx_dot(obj->mtx, v[1], 1, 0);
-	abc[1] = mtx_dot(obj->mtx, v[2], 0, 0) + mtx_dot(obj->mtx, v[3], 1, 0) + mtx_dot(obj->mtx, v[4], 2, 0);
-	abc[2] = mtx_dot(obj->mtx, v[5], 0, 0) + mtx_dot(obj->mtx, v[6], 1, 0) + mtx_dot(obj->mtx, v[7], 2, 0) + VOM(obj->mtx, 3, 3);*/
-	abc[0] = AX * POW2(XD) + BX * POW2(YD) + CX * POW2(ZD)
-		+ DX * XD * YD + EX * XD * ZD + FX * YD * ZD;
-	abc[1] = 2 * (AX * XO * XD + BX * YO * YD + CX * ZO * ZD)
-		+ DX * XO * XD * YO * YD + EX * XO * XD * ZO * ZD
-		+ FX * YO * YD * ZO * ZD + GX * XD + HX * YD + IX * ZD;
-	abc[2] = AX * XO + BX * YO + CX * ZO + DX * XO * YO
-		+ EX * XO * ZO + FX * YO * ZO + GX * XO + HX * YO + IX * ZO + JX;
+	abc[0] = AX * POW2(XD) + EX * POW2(YD) + HX * POW2(ZD)
+		+ 2 * (BX * XD * YD + CX * XD * ZD + FX * YD * ZD);
+	abc[1] = 2 * (AX * XO * XD + BX * (XO * YD + XD * YO)
+		+ CX * (XO * ZD + XD * ZO) + DX * XD + EX * YO * YD
+		+ FX * (YO * ZD + YD * ZO) + GX * YD + HX * ZO * ZD + IX * ZD);
+	abc[2] = AX * POW2(XO) + EX * POW2(YO) + HX * POW2(ZO)
+		+ 2 * (BX * XO * YO + CX * XO * ZO + DX * XO + FX * YO * ZO
+		+ GX * YO + IX * ZO) + JX;
 	if ((ret = solve_quadratic(abc, t, t + 1)) == 0)
 		return (-1);
 	if (ret == 1)

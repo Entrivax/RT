@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:42:56 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 14:42:12 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/15 16:03:09 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	parse_cone_4(char **line, int *i, t_objenv *objenv)
 			objenv->obj->mtx.mtx[0 + objenv->env->cone_mtx.cols * 0] =
 				tan(objenv->obj->mtx.mtx[0 + objenv->env->cone_mtx.cols * 0]
 				* M_PI / 180.);
-			objenv->obj->mtx.mtx[1 + objenv->env->cone_mtx.cols * 1] =
+			objenv->obj->mtx.mtx[2 + objenv->env->cone_mtx.cols * 2] =
 				objenv->obj->mtx.mtx[0 + objenv->env->cone_mtx.cols * 0];
 			i[1] |= 128;
 		}
