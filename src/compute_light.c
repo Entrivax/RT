@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/16 15:11:12 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/16 16:08:07 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_rgb		compute_light(t_scene *scene, t_ray *ray)
 		lray.dir = norm_vect(mtx_sub(mtx_mult(ray->dir, ray->t), lray.pos));
 		if (find_closest(scene, &lray) && ray->closest == lray.closest)
 		{
-			ft_putendl("found");
 			set_params(&ph, &color, &lray, ray);
 			ph.camera = scene->camera;
 			ph.light = (t_light *)current->content;
