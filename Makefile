@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/15 17:12:15 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/16 14:50:17 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,16 @@ OUT=MAC
 NAME=rtv1
 SRCFOLDER=src/
 SRCFILES=compute_light.c \
+		dot_vect.c \
 		expose_hook.c \
 		find_closest.c \
 		find_dist.c \
+		get_normal.c \
 		init_camera.c \
 		init_env.c \
 		init_img.c \
 		init_win.c \
+		invert_ray.c \
 		key_hook.c \
 		loop_hook.c \
 		main.c \
@@ -38,9 +41,13 @@ SRCFILES=compute_light.c \
 		parse_plane.c \
 		parse_scene.c \
 		parse_sphere.c \
+		phong.c \
 		program.c \
 		render_scene.c \
 		return_print.c \
+		rgb_add.c \
+		rgb_clamp.c \
+		rgb_new.c \
 		set_img_pixel.c \
 		set_mlx_hooks.c \
 		set_objenv.c \

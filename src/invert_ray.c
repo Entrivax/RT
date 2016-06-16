@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_closest.c                                     :+:      :+:    :+:   */
+/*   invert_ray.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/15 16:58:52 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/16 14:56:52 by lpilotto         ###   ########.fr       */
+/*   Created: 2016/06/16 13:28:24 by lpilotto          #+#    #+#             */
+/*   Updated: 2016/06/16 13:30:44 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-char	find_closest(t_scene *scene, t_ray *ray)
+t_ray	invert_ray(t_ray ray)
 {
-	t_list	*current;
-	double	t;
+	t_ray	inverted;
 
-	ray->closest = NULL;
-	current = scene->objects;
-	while (current)
-	{
-		if ((t = find_dist(*ray, (t_obj *)current->content)) > LIMIT_MIN
-			&& (t < ray->t || ray->closest == NULL))
-		{
-			ray->t = t;
-			ray->closest = (t_obj *)current->content;
-		}
-		current = current->next;
-	}
-	return (ray->closest != NULL);
+	inverted.pos = mtx_add(ray.pos, mtx_mult(ray.dir, ray.t));
+	inverted.t = ray.t;
+	inverted.dir = mtx_negate(ray.dir);
+	return (inverted);
 }

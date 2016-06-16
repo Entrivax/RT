@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/13 15:36:18 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/16 15:01:24 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,16 @@ typedef struct		s_objenv
 	t_obj			*obj;
 }					t_objenv;
 
+typedef struct		s_phpa
+{
+	t_ray			*lray;
+	t_ray			*ray;
+	t_rgb			*color;
+	t_light			*light;
+	t_camera		*camera;
+	t_mtx			normal;
+}					t_phpa;
+
 /*
 ** Program start method
 */
@@ -159,12 +169,21 @@ int					loop_hook(t_env *env);
 int					key_hook(int keycode, t_env *env);
 
 /*
+** Color methods
+*/
+
+t_rgb				rgb_new(float r, float g, float b);
+void				rgb_clamp(t_rgb *color);
+void				rgb_add(t_rgb *color, float r, float g, float b);
+
+/*
 ** Math method
 */
 
 char				solve_quadratic(double *abc, double *t1, double *t2);
 
 void				set_vector(t_mtx *mtx, double x, double y, double z);
+double				dot_vect(t_mtx *vect1, t_mtx *vect2);
 t_mtx				norm_vect(t_mtx mtx);
 t_mtx				mtx_createrotmtx(double rotx, double roty, double rotz);
 t_mtx				mtx_applyrot(t_mtx *mtx, double rotx, double roty, double rotz);
@@ -205,6 +224,11 @@ int					parse_light(t_env *env, char **line);
 */
 void				render_scene(t_env *env);
 double				find_dist(t_ray ray, t_obj *obj);
+char				find_closest(t_scene *scene, t_ray *ray);
+t_mtx				get_normal(t_ray ray);
+t_rgb				compute_light(t_scene *scene, t_ray *ray);
+t_ray				invert_ray(t_ray ray);
+void				phong(t_phpa *ph);
 
 /*
 ** Utils methods

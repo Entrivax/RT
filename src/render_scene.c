@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/15 17:06:25 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/16 15:01:59 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 static t_rgb	get_pixel_color(t_env *env, int x, int y)
 {
 	t_ray	ray;
-	t_list	*current;
-	double	t;
 
 	ray.dir = norm_vect(mtx_add(env->scene->camera->dir, mtx_add(mtx_mult(env->
 		scene->camera->x_indent, x - env->scene->camera->res.width / 2), mtx_mult(
