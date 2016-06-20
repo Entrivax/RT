@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:35:59 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 17:09:29 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/20 14:13:03 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static int	parse_line(t_env *env, char **line)
 		return (delete_line_array(line, parse_cone(env, line)));
 	else if (!ft_strcmp(line[0], "light"))
 		return (delete_line_array(line, parse_light(env, line)));
+	ft_putstr("Unknown type : ");
+	ft_putendl(line[0]);
 	return (delete_line_array(line, 0));
 }
 

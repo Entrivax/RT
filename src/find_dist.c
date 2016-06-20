@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 14:09:33 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/17 16:41:17 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/20 13:37:36 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ double		find_dist(t_ray ray, t_obj *obj)
 	int		ret;
 	t_mtx	mtxs[2];
 
-	mtxs[0] = ray.pos;//mtx_product(obj->i_trans, ray.pos);
-	mtxs[1] = ray.dir;//mtx_product(obj->i_trans, ray.dir);
+	mtxs[0] = mtx_product(obj->trans.i_ftrans, ray.pos);
+	mtxs[1] = norm_vect(mtx_product(obj->trans.i_rotxscale, ray.dir));
 	/*abc[0] = AX * POW2(XD) + EX * POW2(YD) + HX * POW2(ZD)
 		+ 2 * (BX * XD * YD + CX * XD * ZD + FX * YD * ZD);
 	abc[1] = 2 * (AX * XO * XD + BX * (XO * YD + XD * YO)

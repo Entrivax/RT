@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/16 15:01:24 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/20 13:51:37 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,19 @@ typedef struct		s_tobj
 	t_mtx			rot;
 	t_mtx			trans;
 	t_mtx			scale;
+	t_mtx			rotxscale;
+	t_mtx			ftrans;
+	t_mtx			i_rot;
+	t_mtx			i_trans;
+	t_mtx			i_scale;
+	t_mtx			i_rotxscale;
+	t_mtx			i_ftrans;
 }					t_tobj;
 
 typedef struct		s_obj
 {
 	t_mtx			mtx;
-	t_mtx			trans;
-	t_mtx			i_trans;
+	t_tobj			trans;
 	t_rgb			color;
 	double			shine;
 	double			k_ambiant;
