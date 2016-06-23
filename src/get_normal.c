@@ -6,13 +6,14 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 14:23:07 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/20 15:11:27 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/23 14:00:13 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "quadric_shortcuts.h"
 
+#include <stdio.h>
 t_mtx	get_normal(t_ray ray)
 {
 	t_mtx	pos;
@@ -21,10 +22,13 @@ t_mtx	get_normal(t_ray ray)
 
 	obj = ray.closest;
 	pos = mtx_add(mtx_mult(ray.dir, ray.t), ray.pos);
-	pos = mtx_product(obj->trans.ftrans, pos);
+	pos = mtx_product(obj->trans.i_trans, pos);
+	//pos = mtx_product(obj->trans.ftrans, pos);
+	printf("Object's position: (%lf; %lf; %lf)\n", pos.mtx[0], pos.mtx[1], pos.mtx[2]);
 	set_vector(&normal, 2 * AX * pos.mtx[0] + EX * pos.mtx[2] + FX * pos.mtx[1]
 		+ GX,
 		2 * BX * pos.mtx[1] + DX * pos.mtx[2] + FX * pos.mtx[0] + HX,
 		2 * CX * pos.mtx[2] + DX * pos.mtx[1] + EX * pos.mtx[0] + IX);
-	return (norm_vect(normal));
+	normal = norm_vect(normal);
+	return (mtx_product(obj->trans.rot, normal));
 }

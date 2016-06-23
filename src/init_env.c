@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 14:23:19 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/15 15:52:44 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/21 11:05:01 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	set_shapes_mtx(t_env *env)
 	env->sphere_mtx.mtx[3 + env->sphere_mtx.cols * 3] = -1;
 	env->plane_mtx = mtx_init(4, 4);
 	env->plane_mtx.mtx[1 + env->plane_mtx.cols * 1] = 1;
-	env->plane_mtx.mtx[3 + env->plane_mtx.cols * 3] = -1;
+	env->plane_mtx.mtx[3 + env->plane_mtx.cols * 3] = 0;
 	env->cylinder_mtx = mtx_init(4, 4);
 	env->cylinder_mtx.mtx[0 + env->cylinder_mtx.cols * 0] = 1;
 	env->cylinder_mtx.mtx[2 + env->cylinder_mtx.cols * 2] = 1;

@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/16 14:50:17 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/22 16:10:04 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCFILES=compute_light.c \
 		key_hook.c \
 		loop_hook.c \
 		main.c \
+		mouse_hook.c \
 		mtx_createrotmtx.c \
 		mtx_createscalemtx.c \
 		norm_vect.c \
