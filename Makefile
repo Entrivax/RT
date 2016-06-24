@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/22 16:10:04 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/24 14:46:43 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,11 @@ SRCFILES=compute_light.c \
 		set_vector.c \
 		solve_quadratic.c \
 		transform_object.c
+INCFOLDER=include/
+INCFILES=keycodes.h \
+		 quadric_shortcuts.h \
+		 rtv1.h
+INC=$(addprefix $(INCFOLDER),$(INCFILES))
 OBJFOLDER=obj/
 OBJ=$(addprefix $(OBJFOLDER),$(subst .c,.o,$(SRCFILES)))
 SRC=$(addprefix $(SRCFOLDER),$(SRCFILES))
@@ -85,7 +90,7 @@ $(NAME): $(LIBFT) $(LIBMTX) $(LIBX) $(OBJ)
 
 all: $(NAME)
 
-$(OBJFOLDER)%.o: $(SRCFOLDER)%.c
+$(OBJFOLDER)%.o: $(SRCFOLDER)%.c $(INC)
 	if ! [ -d "$(OBJFOLDER)" ]; then mkdir $(OBJFOLDER); fi
 	gcc $(CFLAGS) -c $< $(EFLAGS) $(IFLAGS) -o $@
 
