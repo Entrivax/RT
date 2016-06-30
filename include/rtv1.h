@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/22 16:09:17 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/06/30 14:50:21 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,17 @@ typedef struct		s_tobj
 	t_mtx			rot;
 	t_mtx			trans;
 	t_mtx			scale;
-	t_mtx			rotxscale;
 	t_mtx			ftrans;
 	t_mtx			i_rot;
 	t_mtx			i_trans;
 	t_mtx			i_scale;
-	t_mtx			i_rotxscale;
 	t_mtx			i_ftrans;
 }					t_tobj;
 
 typedef struct		s_obj
 {
-	t_mtx			mtx;
+	double			(*inter)(t_obj *, t_ray);
+	double			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
 	t_rgb			color;
 	double			shine;
@@ -236,6 +235,10 @@ t_mtx				get_normal(t_ray ray);
 t_rgb				compute_light(t_scene *scene, t_ray *ray);
 t_ray				invert_ray(t_ray ray);
 void				phong(t_phpa *ph);
+double				sphere_inter(t_obj *obj, t_ray ray);
+double				cylinder_inter(t_obj *obj, t_ray ray);
+double				cone_inter(t_obj *obj, t_ray ray);
+double				plane_inter(t_obj *obj, t_ray ray);
 
 /*
 ** Utils methods

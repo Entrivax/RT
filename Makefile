@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/24 14:46:43 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/06/30 14:52:07 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ OUT=MAC
 NAME=rtv1
 SRCFOLDER=src/
 SRCFILES=compute_light.c \
+		cone.c \
+		cylinder.c \
 		dot_vect.c \
 		expose_hook.c \
 		find_closest.c \
@@ -43,6 +45,7 @@ SRCFILES=compute_light.c \
 		parse_scene.c \
 		parse_sphere.c \
 		phong.c \
+		plane.c \
 		program.c \
 		render_scene.c \
 		return_print.c \
@@ -54,6 +57,7 @@ SRCFILES=compute_light.c \
 		set_objenv.c \
 		set_vector.c \
 		solve_quadratic.c \
+		sphere.c \
 		transform_object.c
 INCFOLDER=include/
 INCFILES=keycodes.h \
