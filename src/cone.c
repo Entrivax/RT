@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 12:29:02 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/30 14:25:46 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/01 15:35:59 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ double	cone_inter(t_obj *obj, t_ray ray)
 {
 	double	abc[3];
 	double	t[2];
+	char	ret;
 
-	ray.pos = mtx_mult(ray.pos, obj->tobj.i_ftrans);
-	ray.dir = mtx_mult(ray.dir, obj->i_rot);
-	abc[0] = POW2(ray.dir.x) - POW2(ray.dir.y) + POW2(ray.dir.z);
-	abc[1] = 2 * (ray.pos.x * ray.dir.x - ray.pos.y * ray.dir.y
-		+ ray.pos.z * ray.dir.z);
-	abc[2] = POW2(ray.pos.x) - POW2(ray.pos.y) + POW2(ray.pos.z) - 1;
+	ray.pos = mtx_product(obj->trans.i_ftrans, ray.pos);
+	ray.dir = mtx_product(obj->trans.i_rot, ray.dir);
+	abc[0] = POW2(ray.dir.mtx[0]) - POW2(ray.dir.mtx[1]) + POW2(ray.dir.mtx[2]);
+	abc[1] = 2 * (ray.pos.mtx[0] * ray.dir.mtx[0] - ray.pos.mtx[1] * ray.dir.mtx[1]
+		+ ray.pos.mtx[2] * ray.dir.mtx[2]);
+	abc[2] = POW2(ray.pos.mtx[0]) - POW2(ray.pos.mtx[1]) + POW2(ray.pos.mtx[2]);
 	if ((ret = solve_quadratic(abc, t, t + 1)) == 0)
 		return (-1);
 	if (ret == 1)

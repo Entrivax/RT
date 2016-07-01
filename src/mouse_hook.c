@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/22 15:51:08 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/23 12:21:01 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/01 13:26:00 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		mouse_hook(int button, int x, int y, t_env *env)
 		printf("Ray length: %lf\n", ray.t);
 		printf("Object: %p\n", ray.closest);
 		inter = mtx_add(mtx_mult(ray.dir, ray.t), ray.pos);
-		nor = get_normal(ray);
+		//nor = get_normal(ray);
 		printf("Intersection: (%lf; %lf; %lf)\n", inter.mtx[0], inter.mtx[1], inter.mtx[2]);
 		printf("Normal: (%lf; %lf; %lf)\n", nor.mtx[0], nor.mtx[1], nor.mtx[2]);
 		if (env->scene->lights)

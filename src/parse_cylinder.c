@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:28:51 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 14:48:11 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/01 13:24:00 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,14 @@ int			parse_cylinder(t_env *env, char **line)
 	if ((obj = (t_obj *)ft_memalloc(sizeof(t_obj))) == NULL ||
 		(lst = ft_lstnewfrom(obj, sizeof(*obj))) == NULL)
 		return (return_print("malloc error", 0));
-	obj->mtx = env->cylinder_mtx;
+	//obj->mtx = env->cylinder_mtx;
 	i[0] = 0;
 	i[1] = 0;
 	while (line[++i[0]])
 		if (parse_cylinder_2(line, i, obj, &tobj) == 0)
 			return (0);
 	transform_object(obj, &tobj);
+	obj->inter = cylinder_inter;
 	if (env->scene->objects == NULL)
 		env->scene->objects = lst;
 	else

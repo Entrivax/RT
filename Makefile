@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/30 14:52:07 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/07/01 13:22:26 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ SRCFILES=compute_light.c \
 		dot_vect.c \
 		expose_hook.c \
 		find_closest.c \
-		find_dist.c \
-		get_normal.c \
 		init_camera.c \
 		init_env.c \
 		init_img.c \

@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/30 14:50:21 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/01 13:04:15 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,15 @@ typedef struct		s_tobj
 	t_mtx			i_ftrans;
 }					t_tobj;
 
-typedef struct		s_obj
+typedef struct		s_inter
+{
+	double			t;
+	t_mtx			pos;
+}					t_inter;
+
+typedef struct s_ray	t_ray;
+typedef struct s_obj	t_obj;
+struct				s_obj
 {
 	double			(*inter)(t_obj *, t_ray);
 	double			(*normal)(t_obj *, t_inter *, t_ray *);
@@ -61,13 +69,7 @@ typedef struct		s_obj
 	double			k_ambiant;
 	double			k_spec;
 	double			k_diffuse;
-}					t_obj;
-
-typedef struct		s_inter
-{
-	double			t;
-	t_mtx			pos;
-}					t_inter;
+};
 
 typedef struct		s_ray
 {

@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:01:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/07 15:55:04 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/01 13:24:07 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int			parse_plane(t_env *env, char **line)
 	if ((obj = (t_obj *)ft_memalloc(sizeof(t_obj))) == NULL ||
 		(lst = ft_lstnewfrom(obj, sizeof(*obj))) == NULL)
 		return (return_print("malloc error", 0));
-	obj->mtx = env->plane_mtx;
+	//obj->mtx = env->plane_mtx;
 	tobj.scale = mtx_createscalemtx(1, 1, 1);
 	i[0] = 0;
 	i[1] = 0;
@@ -97,6 +97,7 @@ int			parse_plane(t_env *env, char **line)
 		if (parse_plane_2(line, i, obj, &tobj) == 0)
 			return (0);
 	transform_object(obj, &tobj);
+	obj->inter = plane_inter;
 	if (env->scene->objects == NULL)
 		env->scene->objects = lst;
 	else
