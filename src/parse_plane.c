@@ -6,13 +6,13 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:01:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/01 13:24:07 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/13 14:49:29 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static int	parse_plane_4(char **line, int *i, t_obj *obj, t_tobj *tobj)
+static int	parse_plane_4(char **line, int *i, t_plane *obj, t_tobj *tobj)
 {
 	(void)tobj;
 	if (!ft_strcmp(line[i[0]], "shininess"))
@@ -25,7 +25,7 @@ static int	parse_plane_4(char **line, int *i, t_obj *obj, t_tobj *tobj)
 	return (1);
 }
 
-static int	parse_plane_3(char **line, int *i, t_obj *obj, t_tobj *tobj)
+static int	parse_plane_3(char **line, int *i, t_plane *obj, t_tobj *tobj)
 {
 	if (!ft_strcmp(line[i[0]], "ambiant"))
 	{
@@ -51,7 +51,7 @@ static int	parse_plane_3(char **line, int *i, t_obj *obj, t_tobj *tobj)
 	return (parse_plane_4(line, i, obj, tobj));
 }
 
-static int	parse_plane_2(char **line, int *i, t_obj *obj, t_tobj *tobj)
+static int	parse_plane_2(char **line, int *i, t_plane *obj, t_tobj *tobj)
 {
 	if (!ft_strcmp(line[i[0]], "position"))
 	{
@@ -81,12 +81,12 @@ int			parse_plane(t_env *env, char **line)
 {
 	int			i[2];
 	t_tobj		tobj;
-	t_obj		*obj;
+	t_plane		*obj;
 	t_list		*lst;
 
 	if (env->scene == NULL)
 		return (return_print("Error, a scene must be declared first", 0));
-	if ((obj = (t_obj *)ft_memalloc(sizeof(t_obj))) == NULL ||
+	if ((obj = (t_plane *)ft_memalloc(sizeof(t_obj))) == NULL ||
 		(lst = ft_lstnewfrom(obj, sizeof(*obj))) == NULL)
 		return (return_print("malloc error", 0));
 	//obj->mtx = env->plane_mtx;
@@ -96,8 +96,9 @@ int			parse_plane(t_env *env, char **line)
 	while (line[++i[0]])
 		if (parse_plane_2(line, i, obj, &tobj) == 0)
 			return (0);
-	transform_object(obj, &tobj);
+	transform_object((t_obj *)obj, &tobj);
 	obj->inter = plane_inter;
+	obj->normal = plane_normal;
 	if (env->scene->objects == NULL)
 		env->scene->objects = lst;
 	else

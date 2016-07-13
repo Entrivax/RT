@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/22 15:49:24 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/01 12:58:54 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_rgb		compute_light(t_scene *scene, t_ray *ray)
 	
 	current = scene->lights;
 	set_ambiant_light(scene, ray, &color);
+	return (color);
 	ph.normal = get_normal(*ray);
 	while (current)
 	{

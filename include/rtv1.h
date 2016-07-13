@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/01 13:04:15 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/13 14:47:09 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ typedef struct s_ray	t_ray;
 typedef struct s_obj	t_obj;
 struct				s_obj
 {
+	int				type;
 	double			(*inter)(t_obj *, t_ray);
-	double			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
 	t_rgb			color;
 	double			shine;
@@ -70,6 +71,61 @@ struct				s_obj
 	double			k_spec;
 	double			k_diffuse;
 };
+
+typedef struct		s_sphere
+{
+	int				type;
+	double			(*inter)(t_obj *, t_ray);
+	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_tobj			trans;
+	t_rgb			color;
+	double			shine;
+	double			k_ambiant;
+	double			k_spec;
+	double			k_diffuse;
+	double			radius;
+}					t_sphere;
+
+typedef struct		s_cylinder
+{
+	int				type;
+	double			(*inter)(t_obj *, t_ray);
+	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_tobj			trans;
+	t_rgb			color;
+	double			shine;
+	double			k_ambiant;
+	double			k_spec;
+	double			k_diffuse;
+	double			radius;
+}					t_cylinder;
+
+typedef struct		s_cone
+{
+	int				type;
+	double			(*inter)(t_obj *, t_ray);
+	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_tobj			trans;
+	t_rgb			color;
+	double			shine;
+	double			k_ambiant;
+	double			k_spec;
+	double			k_diffuse;
+	double			angle;
+}					t_cone;
+
+typedef struct		s_plane
+{
+	int				type;
+	double			(*inter)(t_obj *, t_ray);
+	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_tobj			trans;
+	t_rgb			color;
+	double			shine;
+	double			k_ambiant;
+	double			k_spec;
+	double			k_diffuse;
+}					t_plane;
 
 typedef struct		s_ray
 {
@@ -238,9 +294,13 @@ t_rgb				compute_light(t_scene *scene, t_ray *ray);
 t_ray				invert_ray(t_ray ray);
 void				phong(t_phpa *ph);
 double				sphere_inter(t_obj *obj, t_ray ray);
+t_mtx				sphere_normal(t_obj *obj, t_inter *inter, t_ray *ray);
 double				cylinder_inter(t_obj *obj, t_ray ray);
+t_mtx				cylinder_normal(t_obj *obj, t_inter *inter, t_ray *ray);
 double				cone_inter(t_obj *obj, t_ray ray);
+t_mtx				cone_normal(t_obj *obj, t_inter *inter, t_ray *ray);
 double				plane_inter(t_obj *obj, t_ray ray);
+t_mtx				plane_normal(t_obj *obj, t_inter *inter, t_ray *ray);
 
 /*
 ** Utils methods
