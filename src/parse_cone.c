@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:42:56 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/13 14:51:33 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/13 15:36:03 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	parse_cone_4(char **line, int *i, t_objenv *objenv)
 			return (return_print("Error parsing cone opening angle", 0));
 		else
 		{
+			if (a < 0)
+				return (return_print("Error, cone angle can't be negative", 0));
 			((t_cone *)objenv->obj)->angle = tan(a * M_PI / 180.);
 			/*objenv->obj->mtx.mtx[0 + objenv->env->cone_mtx.cols * 0] =
 				tan(objenv->obj->mtx.mtx[0 + objenv->env->cone_mtx.cols * 0]
