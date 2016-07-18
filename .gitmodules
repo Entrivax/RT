@@ -1,0 +1,7 @@
+[submodule "libft"]
+	path = libft
+	url = http://gitlab.entrivax.fr:5896/entrivax/libft.git
+
+[submodule "libmtx"]
+	path = libmtx
+	url = http://gitlab.entrivax.fr:5896/entrivax/libmtx.git
