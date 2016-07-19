@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/22 15:51:08 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/13 15:21:08 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/19 13:20:42 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		mouse_hook(int button, int x, int y, t_env *env)
 		if (env->scene->lights)
 		{
 			printf("Test first light:\n");
+			compute_light(env->scene, &ray);
 			lray.pos = ((t_light *)env->scene->lights->content)->pos;
 			lray.dir = norm_vect(mtx_add(mtx_sub(mtx_mult(ray.dir, ray.t),
 				lray.pos), ray.pos));

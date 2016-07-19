@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 14:12:54 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/13 14:44:08 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/19 14:45:51 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ t_mtx	cylinder_normal(t_obj *obj, t_inter *inter, t_ray *ray)
 		objpos.mtx[0],
 		0,
 		objpos.mtx[2]);
+	if (sqrt(POW2(objpos.mtx[0]) + POW2(objpos.mtx[2])) > ((t_sphere *)obj)->radius)
+		normal = mtx_negate(normal);
 	return (norm_vect(mtx_product(obj->trans.rot, normal)));
 }

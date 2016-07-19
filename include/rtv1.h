@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/13 14:47:09 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/19 11:41:25 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_light
 {
 	t_rgb			color;
 	t_mtx			pos;
+	double			power;
 }					t_light;
 
 typedef struct		s_tobj
@@ -165,6 +166,7 @@ typedef struct		s_scene
 	t_camera		*camera;
 	t_rgb			bgcolor;
 	t_rgb			i_ambiant;
+	double			ambbaseimpact;
 }					t_scene;
 
 typedef struct		s_img
@@ -201,6 +203,8 @@ typedef struct		s_phpa
 	t_ray			*lray;
 	t_ray			*ray;
 	t_rgb			*color;
+	t_rgb			*specular;
+	t_rgb			*diffuse;
 	t_light			*light;
 	t_camera		*camera;
 	t_mtx			normal;

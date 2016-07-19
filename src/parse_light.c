@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 15:21:39 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 15:24:35 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/18 18:03:40 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ static int	parse_light_2(char **line, int *i, t_light *light)
 			return (return_print("Error parsing light color", 0));
 		else
 			i[1] |= 2;
+	}
+	else if (!ft_strcmp(line[i[0]], "power"))
+	{
+		if (!parse_double(line, i, &light->power))
+			return (return_print("Error parsing light power", 0));
+		else
+			i[1] |= 4;
 	}
 	return (1);
 }
@@ -51,5 +58,5 @@ int			parse_light(t_env *env, char **line)
 		env->scene->lights = lst;
 	else
 		ft_lstadd(&(env->scene->lights), lst);
-	return (i[1] == 3 ? 1 : return_print("error light imcomplete", 0));
+	return (i[1] == 7 ? 1 : return_print("error light imcomplete", 0));
 }
