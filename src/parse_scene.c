@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 14:46:26 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/19 11:46:19 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/20 17:04:35 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ static int		parse_scene2(char **line, int *i, t_scene *scene, int *valid)
 	{
 		if (!parse_double(line, i, &scene->ambbaseimpact))
 			return (return_print("Error parsing ambiant base impact", 0));
+	}
+	else if (!ft_strcmp(line[*i], "ambiant_coef_impact"))
+	{
+		if (!parse_double(line, i, &scene->ambcoefimpact))
+			return (return_print("Error parsing ambiant coef impact", 0));
 	}
 	return (1);
 }

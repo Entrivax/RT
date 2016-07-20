@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:22:25 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/18 14:00:41 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/20 14:56:07 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,14 @@ void	transform_object(t_obj *obj, t_tobj *tobj)
 	//tobj->rotxscale = mtx_product(tobj->rot, tobj->scale);
 	//tobj->i_rotxscale = mtx_invert(tobj->rotxscale);
 	tobj->i_trans = mtx_invert(tobj->trans);
+	print_mtx(&tobj->trans);
+	print_mtx(&tobj->i_trans);
 	tobj->i_rot = mtx_invert(tobj->rot);
+	print_mtx(&tobj->rot);
+	print_mtx(&tobj->i_rot);
+
 	tobj->i_scale = mtx_invert(tobj->scale);
+printf("\n\n");
 	/*tobj->i_ftrans = mtx_product(tobj->i_scale, mtx_product(tobj->i_trans,
 		tobj->i_rot));*/
 	tobj->i_ftrans = mtx_invert(tobj->ftrans);

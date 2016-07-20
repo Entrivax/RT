@@ -6,11 +6,12 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 14:12:54 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/19 14:45:51 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/20 16:10:00 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include <stdio.h>
 void	print_mtx(t_mtx *mtx);
 double	cylinder_inter(t_obj *obj, t_ray ray)
 {
@@ -38,16 +39,19 @@ t_mtx	cylinder_normal(t_obj *obj, t_inter *inter, t_ray *ray)
 {
 	t_mtx	normal;
 	t_mtx	objpos;
+	t_mtx	roriobj;
 
-	(void)ray;
 	objpos = mtx_mult(mtx_product(obj->trans.i_rot,
 		mtx_product(obj->trans.i_trans, inter->pos)),
-			((t_cylinder *)obj)->radius);
+			1 / ((t_cylinder *)obj)->radius);
+	roriobj = mtx_mult(mtx_product(obj->trans.i_rot,
+		mtx_product(obj->trans.i_trans, ray->pos)),
+			1 / ((t_cylinder *)obj)->radius);	
 	set_vector(&normal,
 		objpos.mtx[0],
 		0,
 		objpos.mtx[2]);
-	if (sqrt(POW2(objpos.mtx[0]) + POW2(objpos.mtx[2])) > ((t_sphere *)obj)->radius)
+	if (sqrt(POW2(roriobj.mtx[0]) + POW2(roriobj.mtx[2])) < 1)
 		normal = mtx_negate(normal);
 	return (norm_vect(mtx_product(obj->trans.rot, normal)));
 }

@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 12:29:02 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/19 14:46:03 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/20 16:12:42 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,18 @@ t_mtx	sphere_normal(t_obj *obj, t_inter *inter, t_ray *ray)
 {
 	t_mtx	normal;
 	t_mtx	objpos;
+	t_mtx	roriobj;
 
-	(void)ray;
 	objpos = mtx_mult(mtx_product(obj->trans.i_trans, inter->pos),
-		((t_cylinder *)obj)->radius);
+		1 / ((t_sphere *)obj)->radius);
+	roriobj = mtx_mult(mtx_product(obj->trans.i_rot,
+		mtx_product(obj->trans.i_trans, ray->pos)),
+			1 / ((t_sphere *)obj)->radius);	
 	set_vector(&normal,
 		objpos.mtx[0],
 		objpos.mtx[1],
 		objpos.mtx[2]);
-	if (sqrt(POW2(objpos.mtx[0]) + POW2(objpos.mtx[1]) + POW2(objpos.mtx[2])) > ((t_sphere *)obj)->radius)
+	if (sqrt(POW2(roriobj.mtx[0]) + POW2(roriobj.mtx[1]) + POW2(roriobj.mtx[2])) < 1)
 		normal = mtx_negate(normal);
 	return (norm_vect(normal));
 }

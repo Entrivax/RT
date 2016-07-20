@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 14:23:07 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/13 15:11:32 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/20 15:52:48 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_mtx	get_normal(t_ray ray)
 
 	obj = ray.closest;
 	pos = mtx_add(mtx_mult(ray.dir, ray.t), ray.pos);
-	pos = mtx_product(obj->trans.i_trans, pos);
+	pos.mtx[3] = 1;
+	//pos = mtx_product(obj->trans.i_trans, pos);
 	inter.pos = pos;
 	inter.t = 0;
 	return (obj->normal(obj, &inter, &ray));

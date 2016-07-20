@@ -6,16 +6,30 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/19 13:09:28 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/20 17:06:49 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
+# define NEAR(a, b) (a - LIMIT_MIN < b && b < a + LIMIT_MIN)
+
 static void	set_params(t_phpa *ph, t_ray *lray, t_ray *ray)
 {
 	ph->lray = lray;
 	ph->ray = ray;
+}
+
+static char	near_enough(t_ray *r1, t_ray *r2)
+{
+	t_mtx	p1;
+	t_mtx	p2;
+
+	p1 = mtx_add(mtx_mult(r1->dir, r1->t), r1->pos);
+	p2 = mtx_add(mtx_mult(r2->dir, r2->t), r2->pos);
+	return (NEAR(p1.mtx[0], p2.mtx[0])
+		&& NEAR(p1.mtx[1], p2.mtx[1])
+		&& NEAR(p1.mtx[2], p2.mtx[2]));
 }
 
 static void	set_ambiant_light(t_phpa *ph, t_scene *scene, t_ray *ray,
@@ -25,7 +39,7 @@ static void	set_ambiant_light(t_phpa *ph, t_scene *scene, t_ray *ray,
 	t_mtx	n;
 
 	n = mtx_negate(ray->dir);
-	dot = ft_fclamp(dot_vect(&n, &ph->normal) + scene->ambbaseimpact,
+	dot = ft_fclamp((dot_vect(&n, &ph->normal) + scene->ambbaseimpact) * scene->ambcoefimpact,
 		0, 1);
 	*color = rgb_new(ft_min(scene->i_ambiant.r, ray->closest->color.r) * dot
 		* ray->closest->k_ambiant,
@@ -66,7 +80,8 @@ t_rgb		compute_light(t_scene *scene, t_ray *ray)
 		lray.pos = ((t_light *)current->content)->pos;
 		lray.dir = norm_vect(mtx_add(mtx_sub(mtx_mult(ray->dir, ray->t),
 			lray.pos), ray->pos));
-		if (find_closest(scene, &lray) && ray->closest == lray.closest)
+		if (find_closest(scene, &lray) && ray->closest == lray.closest
+			&& near_enough(ray, &lray))
 		{
 			set_params(&ph, &lray, ray);
 			ph.camera = scene->camera;
