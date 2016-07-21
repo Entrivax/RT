@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/20 17:05:44 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 12:37:40 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct		s_camera
 	double			roty;
 	double			rotz;
 	double			fov;
+	int				antialiasing;
 	t_res			res;
 }					t_camera;
 
@@ -244,6 +245,8 @@ int					mouse_hook(int button, int x, int y, t_env *env);
 t_rgb				rgb_new(float r, float g, float b);
 void				rgb_clamp(t_rgb *color);
 void				rgb_add(t_rgb *color, float r, float g, float b);
+void				rgb_add_rgb(t_rgb *colora, t_rgb colorb);
+void				rgb_div(t_rgb *color, double n);
 
 /*
 ** Math method
@@ -273,6 +276,7 @@ int					parse_resolution(char **line, int *i, t_res *res);
 int					parse_vector3(char **line, int *i, t_mtx *v);
 int					parse_color(char **line, int *i, t_rgb *rgb);
 int					parse_double(char **line, int *i, double *a);
+int					parse_int(char **line, int *i, int *a);
 int					parse_mtx_trans(char **line, int *i, t_mtx *v);
 int					parse_mtx_rot(char **line, int *i, t_mtx *v);
 

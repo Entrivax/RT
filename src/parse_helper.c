@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:53:25 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/15 12:38:57 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 11:51:53 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,17 @@ int				parse_double(char **line, int *i, double *a)
 	if (!ft_isnumber(line[*i + 1]))
 		return (0);
 	*a = ft_atof(line[*i + 1]);
+	*i += 1;
+	return (1);
+}
+
+int				parse_int(char **line, int *i, int *a)
+{
+	if (line[*i + 1] == NULL)
+		return (0);
+	if (!ft_isnumber(line[*i + 1]))
+		return (0);
+	*a = ft_atoi(line[*i + 1]);
 	*i += 1;
 	return (1);
 }

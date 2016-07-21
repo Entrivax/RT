@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/07/13 15:09:59 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/07/21 12:34:32 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCFILES=compute_light.c \
 		return_print.c \
 		rgb_add.c \
 		rgb_clamp.c \
+		rgb_div.c \
 		rgb_new.c \
 		set_img_pixel.c \
 		set_mlx_hooks.c \

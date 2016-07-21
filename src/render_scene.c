@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/16 15:01:59 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 14:00:47 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,30 @@
 static t_rgb	get_pixel_color(t_env *env, int x, int y)
 {
 	t_ray	ray;
+	t_rgb	color;
+	int		x_a;
+	int		y_a;
 
-	ray.dir = norm_vect(mtx_add(env->scene->camera->dir, mtx_add(mtx_mult(env->
-		scene->camera->x_indent, x - env->scene->camera->res.width / 2), mtx_mult(
-		env->scene->camera->y_indent, y - env->scene->camera->res.height / 2))));
+	color = rgb_new(0, 0, 0);
+	x_a = -1;
 	ray.pos = env->scene->camera->pos;
-	return (find_closest(env->scene, &ray) ? compute_light(env->scene, &ray) :
-		env->scene->bgcolor);
+	while (++x_a < env->scene->camera->antialiasing)
+	{
+		y_a = -1;
+		while (++y_a < env->scene->camera->antialiasing)
+		{
+			ray.dir = norm_vect(mtx_add(mtx_mult(env->scene->camera->dir,
+				env->scene->camera->vp_dist), mtx_add(mtx_mult(env->
+				scene->camera->x_indent, x - env->scene->camera->res.width / 2.
+				+ x_a / (double)env->scene->camera->antialiasing), mtx_mult(
+				env->scene->camera->y_indent, y - env->scene->camera->res.height
+				/ 2. + y_a / (double)env->scene->camera->antialiasing))));
+			rgb_add_rgb(&color, find_closest(env->scene, &ray) ?
+				compute_light(env->scene, &ray) : env->scene->bgcolor);
+		}
+	}
+	rgb_div(&color, POW2(env->scene->camera->antialiasing));
+	return (color);
 }
 
 void			render_scene(t_env *env)
