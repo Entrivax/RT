@@ -1,0 +1,15 @@
+--Scene declaration, must be the first thing
+scene ambiant 0.3 0.3 0.3 background 0.6549 0.7764 0.8784 ambiant_base_impact 1 ambiant_coef_impact 1
+
+--Lights declaration
+light position 1 4 -7 color 1 1 1 power 100
+
+--Camera declaration
+camera position 5 5 -5 rotation 20 -30 0 screen 800 600 fov 80 antialiasing 1
+--Primitives declarations
+plane position 0 0 0 rotation 0 0 0 color .5 .5 .5 ambiant 1 diffuse 0.9 specular 1 shininess 100
+plane position 0 0 4 rotation 90 0 0 color .1 .1 .85 ambiant 1 diffuse 0.9 specular 1 shininess 100
+
+sphere position 0 1 1 radius 1.5 color 1 0 0 ambiant 1 diffuse 0.9 specular 1 shininess 100
+cylinder position -1.5 0 1 rotation 0 0 -45 radius 1 color . 1 . ambiant 1 diffuse 0.9 specular 1 shininess 100
+cone position 2.5 .7 1 rotation 0 0 30 angle 30 color 1 1 0 ambiant 1 diffuse 0.9 specular 1 shininess 100
