@@ -5,7 +5,7 @@ scene ambiant 0.3 0.3 0.3 background 0.6549 0.7764 0.8784 ambiant_base_impact 1 
 light position 1 4 -7 color 1 1 1 power 100
 
 --Camera declaration
-camera position 0 3 -7 rotation 0 0 0 screen 800 600 fov 80 antialiasing 1
+camera position 0 2 -7 rotation 0 0 0 screen 800 600 fov 80 antialiasing 2
 --Primitives declarations
 plane position 0 0 0 rotation 0 0 0 color .5 .5 .5 ambiant 1 diffuse 0.9 specular 1 shininess 100
 plane position 0 0 4 rotation 90 0 0 color .1 .1 .85 ambiant 1 diffuse 0.9 specular 1 shininess 100
