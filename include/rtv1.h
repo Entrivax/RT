@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 17:41:25 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 18:32:00 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define POW2(x) (x*x)
 # define DOTV(a, b) (a.mtx[0]*b.mtx[0] + a.mtx[1]*b.mtx[1] + a.mtx[2]*b.mtx[2])
 # define NEAR(a, b) (a - LIMIT_MIN < b && b < a + LIMIT_MIN)
+
+typedef struct s_ray	t_ray;
+typedef struct s_obj	t_obj;
 
 typedef struct		s_rgb
 {
@@ -60,12 +63,8 @@ typedef struct		s_inter
 	t_mtx			pos;
 }					t_inter;
 
-typedef struct s_ray	t_ray;
-typedef struct s_obj	t_obj;
-
 struct				s_obj
 {
-	int				type;
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
@@ -78,7 +77,6 @@ struct				s_obj
 
 typedef struct		s_sphere
 {
-	int				type;
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
@@ -92,7 +90,6 @@ typedef struct		s_sphere
 
 typedef struct		s_cylinder
 {
-	int				type;
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
@@ -106,7 +103,6 @@ typedef struct		s_cylinder
 
 typedef struct		s_cone
 {
-	int				type;
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
@@ -120,7 +116,6 @@ typedef struct		s_cone
 
 typedef struct		s_plane
 {
-	int				type;
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
@@ -131,13 +126,13 @@ typedef struct		s_plane
 	double			k_diffuse;
 }					t_plane;
 
-typedef struct		s_ray
+struct				s_ray
 {
 	t_mtx			dir;
 	t_mtx			pos;
 	t_obj			*closest;
 	double			t;
-}					t_ray;
+};
 
 typedef struct		s_res
 {
