@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:43:14 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 17:41:25 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_inter
 
 typedef struct s_ray	t_ray;
 typedef struct s_obj	t_obj;
+
 struct				s_obj
 {
 	int				type;
@@ -260,8 +261,10 @@ void				set_vector(t_mtx *mtx, double x, double y, double z);
 double				dot_vect(t_mtx *vect1, t_mtx *vect2);
 t_mtx				norm_vect(t_mtx mtx);
 t_mtx				mtx_createrotmtx(double rotx, double roty, double rotz);
-t_mtx				mtx_applyrot(t_mtx *mtx, double rotx, double roty, double rotz);
-t_mtx				mtx_createscalemtx(double scalex, double scaley, double scalez);
+t_mtx				mtx_applyrot(t_mtx *mtx, double rotx, double roty,
+											double rotz);
+t_mtx				mtx_createscalemtx(double scalex, double scaley,
+											double scalez);
 void				transform_object(t_obj *obj, t_tobj *tobj);
 
 /*
