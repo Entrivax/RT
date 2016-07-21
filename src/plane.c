@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 14:40:00 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/13 15:32:15 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:34:57 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	plane_inter(t_obj *obj, t_ray ray)
 	ray.dir = mtx_product(obj->trans.i_rot, ray.dir);
 	return (-(ray.pos.mtx[1] / ray.dir.mtx[1]));
 }
-#include <stdio.h>
+
 t_mtx	plane_normal(t_obj *obj, t_inter *inter, t_ray *ray)
 {
 	t_mtx	normal;
@@ -32,6 +32,5 @@ t_mtx	plane_normal(t_obj *obj, t_inter *inter, t_ray *ray)
 		objpos.mtx[1],
 		0);
 	normal = mtx_product(obj->trans.rot, normal);
-	//printf("%lf; %lf; %lf\n", normal.mtx[0], normal.mtx[1], normal.mtx[2]);
 	return (norm_vect(normal));
 }

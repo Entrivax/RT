@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 14:11:08 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:43:14 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define LIMIT_MIN 0.00001
 # define POW2(x) (x*x)
+# define DOTV(a, b) (a.mtx[0]*b.mtx[0] + a.mtx[1]*b.mtx[1] + a.mtx[2]*b.mtx[2])
+# define NEAR(a, b) (a - LIMIT_MIN < b && b < a + LIMIT_MIN)
 
 typedef struct		s_rgb
 {

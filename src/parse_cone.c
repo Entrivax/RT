@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:42:56 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/13 15:36:03 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:36:17 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	parse_cone_4(char **line, int *i, t_objenv *objenv)
 {
 	double a;
+
 	if (!ft_strcmp(line[i[0]], "shininess"))
 	{
 		if (!parse_double(line, i, &objenv->obj->shine))
@@ -31,11 +32,6 @@ static int	parse_cone_4(char **line, int *i, t_objenv *objenv)
 			if (a < 0)
 				return (return_print("Error, cone angle can't be negative", 0));
 			((t_cone *)objenv->obj)->angle = tan(a * M_PI / 180.);
-			/*objenv->obj->mtx.mtx[0 + objenv->env->cone_mtx.cols * 0] =
-				tan(objenv->obj->mtx.mtx[0 + objenv->env->cone_mtx.cols * 0]
-				* M_PI / 180.);
-			objenv->obj->mtx.mtx[2 + objenv->env->cone_mtx.cols * 2] =
-				objenv->obj->mtx.mtx[0 + objenv->env->cone_mtx.cols * 0];*/
 			i[1] |= 128;
 		}
 	}
@@ -106,7 +102,6 @@ int			parse_cone(t_env *env, char **line)
 	if ((obj = (t_obj *)ft_memalloc(sizeof(t_obj))) == NULL ||
 		(lst = ft_lstnewfrom(obj, sizeof(*obj))) == NULL)
 		return (return_print("malloc error", 0));
-	//obj->mtx = env->cone_mtx;
 	tobj.scale = mtx_createscalemtx(1, 1, 1);
 	i[0] = 0;
 	i[1] = 0;

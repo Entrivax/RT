@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 14:09:33 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/20 13:37:36 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:45:00 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@ double		find_dist(t_ray ray, t_obj *obj)
 
 	mtxs[0] = mtx_product(obj->trans.i_ftrans, ray.pos);
 	mtxs[1] = norm_vect(mtx_product(obj->trans.i_rotxscale, ray.dir));
-	/*abc[0] = AX * POW2(XD) + EX * POW2(YD) + HX * POW2(ZD)
-		+ 2 * (BX * XD * YD + CX * XD * ZD + FX * YD * ZD);
-	abc[1] = 2 * (AX * XO * XD + BX * (XO * YD + XD * YO)
-		+ CX * (XO * ZD + XD * ZO) + DX * XD + EX * YO * YD
-		+ FX * (YO * ZD + YD * ZO) + GX * YD + HX * ZO * ZD + IX * ZD);
-	abc[2] = AX * POW2(XO) + EX * POW2(YO) + HX * POW2(ZO)
-		+ 2 * (BX * XO * YO + CX * XO * ZO + DX * XO + FX * YO * ZO
-		+ GX * YO + IX * ZO) + JX;*/
 	abc[0] = AX * POW2(XD) + BX * POW2(YD) + CX * POW2(ZD) + DX * XD * YD
 		+ EX * XD * ZD + FX * YD * ZD;
 	abc[1] = 2 * (AX * XO * XD + BX * YO * YD + CX * ZO * ZD)

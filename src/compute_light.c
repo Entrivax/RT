@@ -6,13 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/20 17:06:49 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:43:47 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-# define NEAR(a, b) (a - LIMIT_MIN < b && b < a + LIMIT_MIN)
 
 static void	set_params(t_phpa *ph, t_ray *lray, t_ray *ray)
 {
@@ -39,8 +37,8 @@ static void	set_ambiant_light(t_phpa *ph, t_scene *scene, t_ray *ray,
 	t_mtx	n;
 
 	n = mtx_negate(ray->dir);
-	dot = ft_fclamp((dot_vect(&n, &ph->normal) + scene->ambbaseimpact) * scene->ambcoefimpact,
-		0, 1);
+	dot = ft_fclamp((dot_vect(&n, &ph->normal) + scene->ambbaseimpact)
+		* scene->ambcoefimpact, 0, 1);
 	*color = rgb_new(ft_min(scene->i_ambiant.r, ray->closest->color.r) * dot
 		* ray->closest->k_ambiant,
 		ft_min(scene->i_ambiant.g, ray->closest->color.g) * dot
@@ -54,13 +52,9 @@ static void	set_ambiant_light(t_phpa *ph, t_scene *scene, t_ray *ray,
 	*ph->specular = rgb_new(0, 0, 0);
 }
 
-static void	set_color_max(t_phpa *ph, t_obj *obj)
+static void	set_color_max(t_phpa *ph)
 {
 	rgb_add(ph->color, ph->diffuse->r, ph->diffuse->g, ph->diffuse->b);
-	/* *ph->color = rgb_new(ft_fclamp(ph->color->r, 0, obj->color.r),
-			ft_fclamp(ph->color->g, 0, obj->color.g),
-			ft_fclamp(ph->color->b, 0, obj->color.b));*/
-	(void)obj;
 	rgb_add(ph->color, ph->specular->r, ph->specular->g, ph->specular->b);
 	rgb_clamp(ph->color);
 }
@@ -71,7 +65,7 @@ t_rgb		compute_light(t_scene *scene, t_ray *ray)
 	t_ray	lray;
 	t_rgb	color[3];
 	t_phpa	ph;
-	
+
 	current = scene->lights;
 	ph.normal = get_normal(*ray);
 	set_ambiant_light(&ph, scene, ray, color);
@@ -90,6 +84,6 @@ t_rgb		compute_light(t_scene *scene, t_ray *ray)
 		}
 		current = current->next;
 	}
-	set_color_max(&ph, ray->closest);
+	set_color_max(&ph);
 	return (*color);
 }

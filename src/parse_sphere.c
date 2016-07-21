@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 12:28:17 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/13 14:48:03 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 14:44:06 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int			parse_sphere(t_env *env, char **line)
 	if ((obj = (t_sphere *)ft_memalloc(sizeof(t_obj))) == NULL ||
 		(lst = ft_lstnewfrom(obj, sizeof(*obj))) == NULL)
 		return (return_print("malloc error", 0));
-	//obj->mtx = env->sphere_mtx;
 	tobj.rot = mtx_createscalemtx(1, 1, 1);
 	tobj.scale = mtx_createscalemtx(1, 1, 1);
 	i[0] = 0;

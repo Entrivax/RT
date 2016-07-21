@@ -6,11 +6,24 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 13:10:54 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 12:28:08 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:39:25 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+static int		parse_camera_3(char **line, int *i, t_env *env)
+{
+	if (!ft_strcmp(line[*i], "antialiasing"))
+	{
+		if (!parse_int(line, i, &env->scene->camera->antialiasing))
+			return (return_print("Error parsing camera antialiasing", 0));
+		if (env->scene->camera->antialiasing <= 0)
+			return (return_print(
+				"Error antialiasing must be superior to 0", 0));
+	}
+	return (1);
+}
 
 static int		parse_camera_2(char **line, int *i, t_env *env, int *valid)
 {
@@ -35,15 +48,7 @@ static int		parse_camera_2(char **line, int *i, t_env *env, int *valid)
 		else
 			*valid |= 8;
 	}
-	else if (!ft_strcmp(line[*i], "antialiasing"))
-	{
-		if (!parse_int(line, i, &env->scene->camera->antialiasing))
-			return (return_print("Error parsing camera antialiasing", 0));
-		if (env->scene->camera->antialiasing <= 0)
-			return (return_print(
-				"Error antialiasing must be superior to 0", 0));
-	}
-	return (1);
+	return (parse_camera_3(line, i, env));
 }
 
 int				parse_camera(t_env *env, char **line)

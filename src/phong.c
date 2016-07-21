@@ -6,16 +6,12 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 12:41:32 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/20 17:06:55 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:32:11 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-#define DOTVB(a, b, n) (a.mtx[n] * b.mtx[n])
-#define DOTV(a, b) (a.mtx[0]*b.mtx[0] + a.mtx[1]*b.mtx[1] + a.mtx[2]*b.mtx[2])
-
-#include <stdio.h>
 static t_mtx	reflect(t_mtx i, t_mtx n)
 {
 	return (mtx_sub(i, mtx_mult(n, 2 * DOTV(n, i))));
@@ -24,31 +20,24 @@ static t_mtx	reflect(t_mtx i, t_mtx n)
 void			phong(t_phpa *ph)
 {
 	t_obj	*obj;
-	double	dln;
-	double	dnln;
-	double	dotrv;
+	double	d[2];
 	double	p;
 	t_ray	inv[2];
 	t_mtx	r;
 
 	p = ph->light->power / POW2(ph->lray->t);
-	//printf("P: %lf\n", p);
 	inv[0] = invert_ray(*ph->lray);
 	inv[1] = invert_ray(*ph->ray);
-	//printf("Light invert: %lf; %lf; %lf\n", inv[0].dir.mtx[0], inv[0].dir.mtx[1], inv[0].dir.mtx[2]);
-	//printf("NORMAL: %lf; %lf; %lf\n", ph->normal.mtx[0], ph->normal.mtx[1], ph->normal.mtx[2]);
 	obj = ph->ray->closest;
-	dln = fmax(DOTV(ph->normal, inv[0].dir), 0.0);
-	dnln = fmax(DOTV(ph->normal, ph->lray->dir), 0.0);
-
-
-	//printf("res: %lf + %lf + %lf\n", DOTVB(ph->normal, inv[0].dir, 0), DOTVB(ph->normal, inv[0].dir, 1), DOTVB(ph->normal, inv[0].dir, 2));
+	d[0] = fmax(DOTV(ph->normal, inv[0].dir), 0.0);
 	r = reflect(inv[0].dir, ph->normal);
-	dotrv = fmax(pow(DOTV(r, inv[1].dir), obj->shine), 0.0);
-	rgb_add(ph->diffuse, ft_max(ph->light->color.r * obj->color.r * obj->k_diffuse * dln * p, 0),
-		ft_max(ph->light->color.g * obj->color.g * obj->k_diffuse * dln * p, 0),
-		ft_max(ph->light->color.b * obj->color.b * obj->k_diffuse * dln * p, 0));
-	rgb_add(ph->specular, ft_max(ph->light->color.r * obj->k_spec * dotrv * p, 0),
-		ft_max(ph->light->color.g * obj->k_spec * dotrv * p, 0),
-		ft_max(ph->light->color.b * obj->k_spec * dotrv * p, 0));
+	d[1] = fmax(pow(DOTV(r, inv[1].dir), obj->shine), 0.0);
+	rgb_add(ph->diffuse,
+	ft_max(ph->light->color.r * obj->color.r * obj->k_diffuse * d[0] * p, 0),
+	ft_max(ph->light->color.g * obj->color.g * obj->k_diffuse * d[0] * p, 0),
+	ft_max(ph->light->color.b * obj->color.b * obj->k_diffuse * d[0] * p, 0));
+	rgb_add(ph->specular,
+	ft_max(ph->light->color.r * obj->k_spec * d[1] * p, 0),
+	ft_max(ph->light->color.g * obj->k_spec * d[1] * p, 0),
+	ft_max(ph->light->color.b * obj->k_spec * d[1] * p, 0));
 }
