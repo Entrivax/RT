@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 12:37:40 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 14:11:08 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,7 @@ int					parse_light(t_env *env, char **line);
 /*
 ** RT methods
 */
-void				render_scene(t_env *env);
+void				*render_scene(void *arg);
 double				find_dist(t_ray ray, t_obj *obj);
 char				find_closest(t_scene *scene, t_ray *ray);
 t_mtx				get_normal(t_ray ray);

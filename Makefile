@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/07/21 12:34:32 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/07/21 14:05:14 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,9 +81,9 @@ LIBMTX=$(LIBMTXFOLDER)/libmtx.a
 EFLAGS=-Wall -Werror -Wextra -g
 IFLAGS=-I$(LIBFTFOLDER) -I$(LIBMTXFOLDER)/include -I./include -I$(LIBXFOLDER)
 ifeq ($(OUT),MAC)
-  LFLAGS=-L$(LIBXFOLDER) -lmlx -framework OpenGL -framework AppKit -L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx
+  LFLAGS=-L$(LIBXFOLDER) -lmlx -framework OpenGL -framework AppKit -L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx -lpthread
 else
-  LFLAGS=-L$(LIBXFOLDER) -lmlx_Linux -lXext -lX11 -L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx -lm
+  LFLAGS=-L$(LIBXFOLDER) -lmlx_Linux -lXext -lX11 -L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx -lm -lpthread
 endif
 CFLAGS=-D $(OUT)
 

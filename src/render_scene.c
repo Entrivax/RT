@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 14:00:47 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 14:10:56 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ static t_rgb	get_pixel_color(t_env *env, int x, int y)
 	return (color);
 }
 
-void			render_scene(t_env *env)
+void			*render_scene(void *arg)
 {
 	int		x;
 	int		y;
+	t_env	*env;
 
+	env = (t_env *)arg;
 	x = -1;
 	while (++x < env->scene->camera->res.width)
 	{
@@ -53,4 +55,5 @@ void			render_scene(t_env *env)
 		while (++y < env->scene->camera->res.height)
 			set_img_pixel(&env->bg_img, x, y, get_pixel_color(env, x, y));
 	}
+	return (NULL);
 }

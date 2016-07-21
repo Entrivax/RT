@@ -9,7 +9,7 @@ light position -10 3.5 -8 color 1 1 1 power 50
 --light position -1 1 -2.5 color 1 1 1
 --light position 0 2 -2.5 color 1 1 1
 --Camera declaration
-camera position 0 3 -10 rotation 0 0 0 screen 800 600 fov 90 antialiasing 4
+camera position 0 3 -10 rotation 0 0 0 screen 800 600 fov 90 antialiasing 1
 --Primitives declarations
 sphere position 0 0 0 radius .5 color 1 0 0 ambiant 1 diffuse 0.9 specular 1 shininess 100
 plane position 0 -1 0 rotation 0 0 0 color .5 .5 .5 ambiant 1 diffuse 0.9 specular 1 shininess 100

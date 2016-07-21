@@ -6,11 +6,12 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:04:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 16:47:53 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 14:08:33 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include <pthread.h>
 
 static void	print_usage(char *binary_name)
 {
@@ -21,7 +22,8 @@ static void	print_usage(char *binary_name)
 
 void		program(int argc, char **argv)
 {
-	t_env	*env;
+	t_env		*env;
+	pthread_t	pth;
 
 	if (argc != 2)
 	{
@@ -38,6 +40,6 @@ void		program(int argc, char **argv)
 		exit(-1);
 	init_win(env);
 	set_mlx_hooks(env);
-	render_scene(env);
+	pthread_create(&pth, NULL, render_scene, env);
 	mlx_loop(env->mlx);
 }
