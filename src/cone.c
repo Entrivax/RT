@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 12:29:02 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:41:02 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 16:39:13 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ t_mtx	cone_normal(t_obj *obj, t_inter *inter, t_ray *ray)
 			1 / ((t_sphere *)obj)->radius);
 	set_vector(&normal,
 		objpos.mtx[0],
-		objpos.mtx[1] * ((t_cone *)obj)->angle,
+		-objpos.mtx[1] * ((t_cone *)obj)->angle,
 		objpos.mtx[2]);
-	if (sqrt(POW2(roriobj.mtx[0]) + POW2(roriobj.mtx[2])) < fabs(objpos.mtx[1]))
+	if (sqrt(POW2(roriobj.mtx[0]) + POW2(roriobj.mtx[2])) < fabs(objpos.mtx[1] * ((t_cone *)obj)->angle))
 		normal = mtx_negate(normal);
 	return (norm_vect(mtx_product(obj->trans.rot, normal)));
 }

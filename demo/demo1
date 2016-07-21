@@ -1,15 +1,15 @@
 --Scene declaration, must be the first thing
-scene ambiant 0.3 0.3 0.3 background 0.6549 0.7764 0.8784 ambiant_base_impact 0 ambiant_coef_impact 0.4
+scene ambiant 0.3 0.3 0.3 background 0.6549 0.7764 0.8784 ambiant_base_impact 1 ambiant_coef_impact 0
 
 --Lights declaration
-light position -4 5 5 color 1 1 1 power 30
-light position -10 3.5 -8 color 1 1 1 power 50
+light position 10 3.5 -8 color 1 1 1 power 100
+light position -10 3.5 -8 color 1 1 1 power 100
 
 --light position 0 3 -10 color 1 1 1 power 200
 --light position -1 1 -2.5 color 1 1 1
 --light position 0 2 -2.5 color 1 1 1
 --Camera declaration
-camera position 0 3 -10 rotation 0 0 0 screen 800 600 fov 90 antialiasing 1
+camera position 0 3 -10 rotation 0 0 0 screen 800 600 fov 80 antialiasing 3
 --Primitives declarations
 sphere position 0 0 0 radius .5 color 1 0 0 ambiant 1 diffuse 0.9 specular 1 shininess 100
 plane position 0 -1 0 rotation 0 0 0 color .5 .5 .5 ambiant 1 diffuse 0.9 specular 1 shininess 100
@@ -23,7 +23,7 @@ sphere position -5 -1 0 radius 1.5 color 0.5 0.5 0.5 ambiant 1 diffuse 0.9 specu
 sphere position -5 6 0 radius 1.5 color 0.5 0.5 0.5 ambiant 1 diffuse 0.9 specular 1 shininess 100
 
 ---Near right pillar
-cylinder position 5 0 0 rotation 30 0 0 radius 1 color 0.5 0.5 0.5 ambiant 1 diffuse 0.9 specular 1 shininess 100
+cylinder position 5 0 0 rotation 0 0 0 radius 1 color 0.5 0.5 0.5 ambiant 1 diffuse 0.9 specular 1 shininess 100
 sphere position 5 -1 0 radius 1.5 color 0.5 0.5 0.5 ambiant 1 diffuse 0.9 specular 1 shininess 100
 sphere position 5 6 0 radius 1.5 color .5 .5 .5 ambiant 1 diffuse 0.9 specular 1 shininess 100
 
@@ -38,4 +38,4 @@ sphere position 5 -1 10 radius 1.5 color 0.5 0.5 0.5 ambiant 1 diffuse 0.9 specu
 sphere position 5 6 10 radius 1.5 color 0.5 0.5 0.5 ambiant 1 diffuse 0.9 specular 1 shininess 100
 
 --cylinder position 0 0 7 rotation 0 0 0 radius 1 color 0 1 0 ambiant 1 diffuse 0.9 specular 1 shininess 100
-cone position 0 0 0 rotation 0 0 -20 angle 10 color 1 1 0 ambiant 1 diffuse 0.9 specular 1 shininess 100
+--cone position 0 0 0 rotation 0 0 -20 angle 10 color 1 1 0 ambiant 1 diffuse 0.9 specular 1 shininess 100
