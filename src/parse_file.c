@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:35:59 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/20 14:13:03 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/21 19:44:52 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ int			parse_file(t_env *env, char *file)
 		free(line);
 	}
 	close(fd);
-	return (0);
+	return (env->scene && env->scene->camera ? 0 : -1);
 }
