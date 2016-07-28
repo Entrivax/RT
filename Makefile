@@ -14,7 +14,8 @@
 OUT=MAC
 NAME=rtv1
 SRCFOLDER=src/
-SRCFILES=compute_light.c \
+SRCFILES=compute_color.c \
+		compute_light.c \
 		cone.c \
 		cylinder.c \
 		dot_vect.c \
@@ -51,6 +52,7 @@ SRCFILES=compute_light.c \
 		rgb_add.c \
 		rgb_clamp.c \
 		rgb_div.c \
+		rgb_mult.c \
 		rgb_new.c \
 		set_img_pixel.c \
 		set_mlx_hooks.c \
@@ -58,7 +60,8 @@ SRCFILES=compute_light.c \
 		set_vector.c \
 		solve_quadratic.c \
 		sphere.c \
-		transform_object.c
+		transform_object.c \
+		vect_reflect.c
 INCFOLDER=include/
 INCFILES=keycodes.h \
 		 quadric_shortcuts.h \

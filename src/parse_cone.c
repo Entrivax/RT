@@ -35,6 +35,11 @@ static int	parse_cone_4(char **line, int *i, t_objenv *objenv)
 			i[1] |= 128;
 		}
 	}
+	else if (!ft_strcmp(line[i[0]], "reflexion"))
+	{
+		if (!parse_double(line, i, &objenv->obj->refle))
+			return (return_print("Error parsion cone reflexion", 0));
+	}
 	return (1);
 }
 

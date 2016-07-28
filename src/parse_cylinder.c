@@ -34,6 +34,11 @@ static int	parse_cylinder_4(char **line, int *i, t_cylinder *obj, t_tobj *tobj)
 			i[1] |= 128;
 		}
 	}
+	else if (!ft_strcmp(line[i[0]], "reflexion"))
+	{
+		if (!parse_double(line, i, &obj->refle))
+			return (return_print("Error parsion cylinder reflexion", 0));
+	}
 	return (1);
 }
 

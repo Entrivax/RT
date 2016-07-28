@@ -12,6 +12,18 @@
 
 #include "rtv1.h"
 
+static int		parse_scene3(char **line, int *i, t_scene *scene)
+{
+	if (!ft_strcmp(line[*i], "max_reflexion"))
+	{
+		if (!parse_int(line, i, &scene->max_ref))
+			return (return_print("Error parsing reflexion count", 0));
+		if (scene->max_ref < 0)
+			return (return_print("Error max_reflexion must be > 0", 0));
+	}
+	return (1);
+}
+
 static int		parse_scene2(char **line, int *i, t_scene *scene, int *valid)
 {
 	if (!ft_strcmp(line[*i], "ambiant"))
@@ -36,7 +48,7 @@ static int		parse_scene2(char **line, int *i, t_scene *scene, int *valid)
 		if (!parse_double(line, i, &scene->ambcoefimpact))
 			return (return_print("Error parsing ambiant coef impact", 0));
 	}
-	return (1);
+	return (parse_scene3(line, i, scene));
 }
 
 int				parse_scene(t_env *env, char **line)
@@ -54,6 +66,7 @@ int				parse_scene(t_env *env, char **line)
 		return (return_print("malloc error", 0));
 	i = 0;
 	valid = 0;
+	scene->max_ref = 5;
 	while (line[++i])
 		if (parse_scene2(line, &i, scene, &valid) == 0)
 			return (0);

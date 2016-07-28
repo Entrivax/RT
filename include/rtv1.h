@@ -73,6 +73,7 @@ struct				s_obj
 	double			k_ambiant;
 	double			k_spec;
 	double			k_diffuse;
+	double			refle;
 };
 
 typedef struct		s_sphere
@@ -85,6 +86,7 @@ typedef struct		s_sphere
 	double			k_ambiant;
 	double			k_spec;
 	double			k_diffuse;
+	double			refle;
 	double			radius;
 }					t_sphere;
 
@@ -98,6 +100,7 @@ typedef struct		s_cylinder
 	double			k_ambiant;
 	double			k_spec;
 	double			k_diffuse;
+	double			refle;
 	double			radius;
 }					t_cylinder;
 
@@ -111,6 +114,7 @@ typedef struct		s_cone
 	double			k_ambiant;
 	double			k_spec;
 	double			k_diffuse;
+	double			refle;
 	double			angle;
 }					t_cone;
 
@@ -124,6 +128,7 @@ typedef struct		s_plane
 	double			k_ambiant;
 	double			k_spec;
 	double			k_diffuse;
+	double			refle;
 }					t_plane;
 
 struct				s_ray
@@ -167,6 +172,7 @@ typedef struct		s_scene
 	t_rgb			i_ambiant;
 	double			ambbaseimpact;
 	double			ambcoefimpact;
+	int				max_ref;
 }					t_scene;
 
 typedef struct		s_img
@@ -245,6 +251,8 @@ void				rgb_clamp(t_rgb *color);
 void				rgb_add(t_rgb *color, float r, float g, float b);
 void				rgb_add_rgb(t_rgb *colora, t_rgb colorb);
 void				rgb_div(t_rgb *color, double n);
+void				rgb_mult(t_rgb *color, double mult);
+t_rgb				rgb_mult_cpy(t_rgb color, double mult);
 
 /*
 ** Math method
@@ -261,6 +269,7 @@ t_mtx				mtx_applyrot(t_mtx *mtx, double rotx, double roty,
 t_mtx				mtx_createscalemtx(double scalex, double scaley,
 											double scalez);
 void				transform_object(t_obj *obj, t_tobj *tobj);
+t_mtx				vect_reflect(t_mtx i, t_mtx n);
 
 /*
 ** Parse file method
@@ -296,6 +305,7 @@ int					parse_light(t_env *env, char **line);
 ** RT methods
 */
 void				*render_scene(void *arg);
+t_rgb				compute_color(t_env *env, t_ray *ray, int ref, float refrem);
 double				find_dist(t_ray ray, t_obj *obj);
 char				find_closest(t_scene *scene, t_ray *ray);
 t_mtx				get_normal(t_ray ray);

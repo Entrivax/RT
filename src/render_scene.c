@@ -33,8 +33,7 @@ static t_rgb	get_pixel_color(t_env *env, int x, int y)
 				+ x_a / (double)env->scene->camera->antialiasing), mtx_mult(
 				env->scene->camera->y_indent, y - env->scene->camera->res.height
 				/ 2. + y_a / (double)env->scene->camera->antialiasing))));
-			rgb_add_rgb(&color, find_closest(env->scene, &ray) ?
-				compute_light(env->scene, &ray) : env->scene->bgcolor);
+			rgb_add_rgb(&color, compute_color(env, &ray, 0, 1));
 		}
 	}
 	rgb_div(&color, POW2(env->scene->camera->antialiasing));

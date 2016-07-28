@@ -34,6 +34,11 @@ static int	parse_sphere_4(char **line, int *i, t_sphere *obj, t_tobj *tobj)
 			i[1] |= 2;
 		}
 	}
+	else if (!ft_strcmp(line[i[0]], "reflexion"))
+	{
+		if (!parse_double(line, i, &obj->refle))
+			return (return_print("Error parsion sphere reflexion", 0));
+	}
 	return (1);
 }
 
