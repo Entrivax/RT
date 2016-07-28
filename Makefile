@@ -6,13 +6,13 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/07/28 13:04:41 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/07/28 15:18:18 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #OUT=LINUX
 OUT=MAC
-NAME=rtv1
+NAME=rt
 SRCFOLDER=src/
 SRCFILES=compute_color.c \
 		compute_light.c \

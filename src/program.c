@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:04:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 14:08:54 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/28 14:50:20 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	print_usage(char *binary_name)
 {
 	ft_putendl("Usage: ");
 	ft_putstr(binary_name);
-	ft_putendl("[options] <scene_file>\n");
+	ft_putendl(" [options] <scene_file>\n");
 	ft_putendl("\t-t [n]\tUse n threads to compute the image");
 }
 
@@ -28,6 +28,8 @@ int			start_working_threads(t_env *env)
 	if ((pth = ft_memalloc(env->n_threads * sizeof(pthread_t))) == NULL)
 		return (return_print("Error during malloc of pthread_t", -1));
 	i = -1;
+	if (pthread_mutex_init(&env->mutex, NULL))
+		return (return_print("Error initializing the mutex", -1));
 	env->processed_pixels = 0;
 	while (++i < env->n_threads)
 	{

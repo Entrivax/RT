@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/28 12:24:06 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 14:03:41 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/28 15:13:24 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int		parse_arg(t_env *env, int argc, int *i, char **argv)
 {
 	if (ft_strstartwith(argv[*i], "-t") && *i + 1 < argc)
 	{
-		if (!parse_int(argv, i, &env->n_threads) && env->n_threads <= 0)
-			return (return_print("Error parsing -t arg", -1));
+		if (!parse_int(argv, i, &env->n_threads))
+			return (return_print("Error parsing -t [n]", -1));
+		else if (env->n_threads <= 0)
+			return (return_print("Number of threads can't be below 1!", -1));
 	}
 	else
 	{

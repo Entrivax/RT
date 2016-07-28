@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 13:03:29 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/28 14:46:18 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,8 @@ typedef struct		s_env
 	void			*win;
 	int				n_threads;
 	unsigned int	processed_pixels;
+	pthread_t		*threads;
+	pthread_mutex_t	mutex;
 	t_img			bg_img;
 	t_scene			*scene;
 	t_mtx			sphere_mtx;

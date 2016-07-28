@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 14:04:28 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/28 15:17:01 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,20 @@ void			*render_scene(void *arg)
 	int				x;
 	int				y;
 	unsigned int	current_pixel_cpy;
-	t_env	*env;
+	t_env			*env;
 
 	env = (t_env *)arg;
 	while (1)
 	{
+		if (env->n_threads > 1)
+			pthread_mutex_lock(&env->mutex);
 		current_pixel_cpy = env->processed_pixels;
 		env->processed_pixels++;
+		if (env->n_threads > 1)
+			pthread_mutex_unlock(&env->mutex);
 		if (current_pixel_cpy >= (unsigned int)(env->scene->camera->res.height *
 			env->scene->camera->res.width))
-			break;
+			break ;
 		y = current_pixel_cpy / env->scene->camera->res.width;
 		x = current_pixel_cpy % env->scene->camera->res.width;
 		set_img_pixel(&env->bg_img, x, y, get_pixel_color(env, x, y));
