@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/28 12:24:06 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 15:13:24 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/28 18:19:01 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		parse_arg(t_env *env, int argc, int *i, char **argv)
 		else if (env->n_threads <= 0)
 			return (return_print("Number of threads can't be below 1!", -1));
 	}
+	else if (ft_strstartwith(argv[*i], "-T"))
+		env->print_time = 1;
 	else
 	{
 		ft_putendl("Unknown parameter : ");

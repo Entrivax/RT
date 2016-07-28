@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/07/28 15:18:18 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/07/28 18:59:07 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCFILES=compute_color.c \
 		parse_sphere.c \
 		phong.c \
 		plane.c \
+		print_usage.c \
 		program.c \
 		render_scene.c \
 		return_print.c \

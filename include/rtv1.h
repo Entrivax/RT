@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 14:46:18 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/28 19:48:44 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <math.h>
 # include <pthread.h>
 # include <stdlib.h>
+# include <sys/time.h>
 # include <unistd.h>
 
 # include "keycodes.h"
@@ -191,7 +192,10 @@ typedef struct		s_env
 	void			*mlx;
 	void			*win;
 	int				n_threads;
+	int				real_n_threads;
+	char			print_time;
 	unsigned int	processed_pixels;
+	struct timeval	clocks[2];
 	pthread_t		*threads;
 	pthread_mutex_t	mutex;
 	t_img			bg_img;
@@ -330,6 +334,7 @@ t_mtx				plane_normal(t_obj *obj, t_inter *inter, t_ray *ray);
 /*
 ** Utils methods
 */
+void				print_usage(char *binary_name);
 int					return_print(char *str, int return_state);
 t_objenv			set_objenv(t_env *env, t_obj *obj, t_tobj *tobj);
 
