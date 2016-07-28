@@ -6,13 +6,12 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/27 15:36:19 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/28 14:06:22 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-#include <stdio.h>
 t_rgb		compute_color(t_env *env, t_ray *ray, int ref, float refrem)
 {
 	t_rgb	color;
@@ -23,7 +22,6 @@ t_rgb		compute_color(t_env *env, t_ray *ray, int ref, float refrem)
 	{
 		refrem *= ray->closest->refle;
 		color = compute_light(env->scene, ray);
-		printf("%d / %d\n", ref, env->scene->max_ref);
 		if (refrem <= 0.001 || ref >= env->scene->max_ref)
 			return (color);
 		normal = get_normal(*ray);

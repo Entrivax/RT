@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/07/21 14:05:14 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/07/28 13:04:41 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCFILES=compute_color.c \
 		mtx_createrotmtx.c \
 		mtx_createscalemtx.c \
 		norm_vect.c \
+		parse_args.c \
 		parse_camera.c \
 		parse_cone.c \
 		parse_cylinder.c \

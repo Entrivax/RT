@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 18:32:00 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/07/28 13:03:29 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <math.h>
+# include <pthread.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -189,6 +190,8 @@ typedef struct		s_env
 {
 	void			*mlx;
 	void			*win;
+	int				n_threads;
+	unsigned int	processed_pixels;
 	t_img			bg_img;
 	t_scene			*scene;
 	t_mtx			sphere_mtx;
@@ -293,6 +296,7 @@ int					parse_mtx_rot(char **line, int *i, t_mtx *v);
 ** Object parsing methods
 */
 
+int					parse_args(t_env *env, int argc, char **argv);
 int					parse_scene(t_env *env, char **line);
 int					parse_camera(t_env *env, char **line);
 int					parse_cone(t_env *env, char **line);
