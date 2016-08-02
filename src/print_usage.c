@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/28 18:47:31 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 18:47:52 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/02 14:39:49 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	print_usage(char *binary_name)
 {
 	ft_putendl("Usage: ");
 	ft_putstr(binary_name);
-	ft_putendl(" [options] <scene_file>\n");
+	ft_putendl(" [options] <scene_file>");
+	ft_putendl("\t-h, -?\tPrint this help message");
 	ft_putendl("\t-t [n]\tUse n threads to compute the image");
+	ft_putendl("\t-T\tPrint the render time at the end of the render");
 }

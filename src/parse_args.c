@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/28 12:24:06 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 18:19:01 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/02 14:41:31 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int		parse_arg(t_env *env, int argc, int *i, char **argv)
 	}
 	else if (ft_strstartwith(argv[*i], "-T"))
 		env->print_time = 1;
+	else if (ft_strstartwith(argv[*i], "-h") || ft_strstartwith(argv[*i], "-?"))
+		print_usage(argv[0]);
 	else
 	{
 		ft_putendl("Unknown parameter : ");
@@ -54,16 +56,18 @@ int		parse_args(t_env *env, int argc, char **argv)
 	file_parsed = -1;
 	while (++i < argc)
 	{
-		if (i == argc - 1)
+		if (ft_strstartwith(argv[i], "-"))
+		{
+			if (parse_arg(env, argc, &i, argv) == -1)
+				return (-1);
+		}
+		else if (i == argc - 1)
 		{
 			if (parse_file(env, argv[i]) == -1)
 				return (-1);
 			else
 				file_parsed = 0;
 		}
-		if (ft_strstartwith(argv[i], "-"))
-			if (parse_arg(env, argc, &i, argv) == -1)
-				return (-1);
 	}
 	return (file_parsed);
 }
