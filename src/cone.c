@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 12:29:02 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 18:33:44 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:53:10 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 double	cone_inter(t_obj *obj, t_ray ray)
 {

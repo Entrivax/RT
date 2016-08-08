@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:43:47 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:53:01 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static void	set_params(t_phpa *ph, t_ray *lray, t_ray *ray)
 {

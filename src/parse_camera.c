@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 13:10:54 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:39:25 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:51 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static int		parse_camera_3(char **line, int *i, t_env *env)
 {

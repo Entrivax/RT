@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 18:12:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/22 16:29:56 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:41 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 t_mtx		norm_vect(t_mtx mtx)
 {

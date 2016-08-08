@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 12:58:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/25 13:03:35 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:22 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 int		main(int argc, char **argv)
 {

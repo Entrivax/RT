@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/28 12:24:06 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/02 14:41:31 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:46 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 char	ft_strstartwith(char *str, char *start)
 {

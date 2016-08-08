@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:35:59 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 19:44:52 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:55:06 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static int	delete_line_array(char **line, int return_state)
 {

@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 12:48:35 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 12:24:41 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:38 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void		rgb_add_rgb(t_rgb *colora, t_rgb colorb)
 {

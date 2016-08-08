@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 15:14:29 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/05/27 13:41:45 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:17 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 int		loop_hook(t_env *env)
 {

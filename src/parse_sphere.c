@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 12:28:17 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 14:44:06 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:10 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static int	parse_sphere_4(char **line, int *i, t_sphere *obj, t_tobj *tobj)
 {

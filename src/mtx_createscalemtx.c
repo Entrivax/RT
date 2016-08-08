@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:37:56 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 14:39:44 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:37 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 t_mtx	mtx_createscalemtx(double scalex, double scaley, double scalez)
 {

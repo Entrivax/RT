@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 11:47:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/21 11:33:48 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:53:59 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 int		init_camera(t_camera *camera)
 {

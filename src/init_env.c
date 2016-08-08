@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 14:23:19 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 12:55:29 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:50:49 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static void	set_shapes_mtx(t_env *env)
 {
@@ -42,9 +42,9 @@ t_env		*init_env(void)
 		ft_putendl("malloc error: env");
 		return (NULL);
 	}
-	if ((env->mlx = mlx_init()) == NULL)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		ft_putendl("mlx init error");
+		ft_putendl("SDL2 init error");
 		free(env);
 		return (NULL);
 	}

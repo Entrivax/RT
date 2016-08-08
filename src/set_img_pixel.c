@@ -6,39 +6,21 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 17:01:21 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 16:42:50 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:50:16 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
-
-static int	color_to_int(t_rgb *color)
-{
-	int		intcolor;
-
-	if (color->r < 0)
-		color->r = 0;
-	else if (color->r > 1)
-		color->r = 1;
-	if (color->g < 0)
-		color->g = 0;
-	else if (color->g > 1)
-		color->g = 1;
-	if (color->b < 0)
-		color->b = 0;
-	else if (color->b > 1)
-		color->b = 1;
-	intcolor = (int)(color->b * 255) & 0xff;
-	intcolor += ((int)(color->g * 255) << 8) & 0xff00;
-	intcolor += ((int)(color->r * 255) << 16) & 0xff0000;
-	return (intcolor);
-}
+#include "rt.h"
 
 void		set_img_pixel(t_img *img, int x, int y, t_rgb color)
 {
 	if (x >= 0 && x < img->res.width && y >= 0 && y < img->res.height)
 	{
-		(*(unsigned int *)(img->img_writable + x * img->bytes_per_pixel +
-			y * img->size_line)) = color_to_int(&color);
+		pthread_mutex_lock(&img->mutex);
+		SDL_SetRenderTarget(img->renderer, img->img);
+		SDL_SetRenderDrawColor(img->renderer, color.r * 255, color.g * 255,
+			color.b * 255, 255);
+		SDL_RenderDrawPoint(img->renderer, x, y);
+		pthread_mutex_unlock(&img->mutex);
 	}
 }

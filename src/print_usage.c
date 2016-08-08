@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/28 18:47:31 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/02 14:39:49 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:24 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void	print_usage(char *binary_name)
 {

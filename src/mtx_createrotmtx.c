@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 12:12:12 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/14 14:41:18 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:32 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static void		set_cosine(double *cosin, double rotx, double roty, double rotz)
 {

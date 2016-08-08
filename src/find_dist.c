@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 14:09:33 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:45:00 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:53:48 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 #include "quadric_shortcuts.h"
 
 double		find_dist(t_ray ray, t_obj *obj)

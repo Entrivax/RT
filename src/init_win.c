@@ -6,16 +6,18 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 16:44:57 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/06 16:49:43 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:50:45 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 int		init_win(t_env *env)
 {
-	if ((env->win = mlx_new_window(env->mlx, env->scene->camera->res.width,
-		env->scene->camera->res.height, "rtv1 @42")) == NULL)
+	if (SDL_CreateWindowAndRenderer(env->scene->camera->res.width,
+		env->scene->camera->res.height, SDL_WINDOW_SHOWN, &env->win,
+		&env->renderer))
 		return (-1);
+	SDL_SetWindowTitle(env->win, "rt @42");
 	return (0);
 }

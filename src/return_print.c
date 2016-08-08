@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 16:21:53 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 16:23:46 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:33 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 int		return_print(char *str, int return_state)
 {

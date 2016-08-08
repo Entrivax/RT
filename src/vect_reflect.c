@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 15:53:32 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 15:16:10 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:57:36 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 t_mtx	vect_reflect(t_mtx i, t_mtx n)
 {

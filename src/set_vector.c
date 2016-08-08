@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 12:07:55 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/09 15:45:33 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:57:14 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void		set_vector(t_mtx *mtx, double x, double y, double z)
 {

@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:58:52 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 12:17:38 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:53:42 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 char	find_closest(t_scene *scene, t_ray *ray)
 {

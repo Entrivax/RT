@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 13:40:24 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/16 14:56:36 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:53:28 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 double		dot_vect(t_mtx *vect1, t_mtx *vect2)
 {

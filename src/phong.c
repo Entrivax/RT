@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 12:41:32 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 18:35:12 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:15 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void			phong(t_phpa *ph)
 {

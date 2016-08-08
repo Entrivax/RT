@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 15:58:12 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/01 16:06:28 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:57:19 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 char	solve_quadratic(double *abc, double *t1, double *t2)
 {

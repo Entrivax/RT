@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 13:28:24 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/16 13:30:44 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:08 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 t_ray	invert_ray(t_ray ray)
 {

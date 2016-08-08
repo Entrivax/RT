@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:01:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 14:44:36 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:00 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static int	parse_plane_4(char **line, int *i, t_plane *obj, t_tobj *tobj)
 {

@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 17:08:38 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/14 14:39:10 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:55:20 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 int				parse_mtx_trans(char **line, int *i, t_mtx *v)
 {

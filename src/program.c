@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:04:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 19:53:21 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:50:00 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static void	run_working_threads(t_env *env)
 {
@@ -44,6 +44,7 @@ static int	init_working_threads(t_env *env)
 		return (return_print("Error initializing the mutex", -1));
 	env->processed_pixels = 0;
 	gettimeofday(&env->clocks[0], NULL);
+	SDL_SetWindowTitle(env->win, "rt @42 - Rendering...");
 	run_working_threads(env);
 	return (0);
 }
@@ -59,6 +60,9 @@ static void	*clock_count(void *param)
 		if (env->threads[i] != NULL)
 			pthread_join(env->threads[i], NULL);
 	gettimeofday(&env->clocks[1], NULL);
+	env->new_title = "rt @42 - Rendering finished";
+	add_to_queue(env, update_title);
+	//SDL_SetWindowTitle(env->win, "rt @42 - Rendering finished!");
 	ft_putstr("Time taken : ");
 	ft_putnbr(env->clocks[1].tv_sec - env->clocks[0].tv_sec);
 	ft_putchar(',');
@@ -92,14 +96,15 @@ void		program(int argc, char **argv)
 		exit(-1);
 	if (parse_args(env, argc, argv) == -1)
 		exit(-1);
-	if (init_img(env->mlx, &env->bg_img, env->scene->camera->res.width,
+	if (init_win(env) == -1)
+		exit(-1);
+	if (init_img(env, &env->bg_img, env->scene->camera->res.width,
 		env->scene->camera->res.height) == -1)
 		exit(-1);
 	if (init_working_threads(env) == -1)
 		exit(-1);
 	if (env->print_time)
 		handle_clock(env);
-	init_win(env);
-	set_mlx_hooks(env);
-	mlx_loop(env->mlx);
+	sdl_loop(env);
+	destruct_env(env);
 }

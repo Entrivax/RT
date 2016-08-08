@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 14:46:26 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/20 17:04:35 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:06 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static int		parse_scene3(char **line, int *i, t_scene *scene)
 {

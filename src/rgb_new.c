@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 12:16:35 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/06/16 12:17:54 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:59 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 t_rgb	rgb_new(float r, float g, float b)
 {

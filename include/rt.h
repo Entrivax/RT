@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.h                                             :+:      :+:    :+:   */
+/*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/02 14:49:08 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:49:51 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef RT_H
+# define RT_H
 
 # include <fcntl.h>
 # include <math.h>
@@ -23,7 +23,7 @@
 # include "keycodes.h"
 # include "libft.h"
 # include "libmtx.h"
-# include "mlx.h"
+# include "SDL.h"
 
 # define LIMIT_MIN 0.00001
 # define POW2(x) (x*x)
@@ -179,31 +179,33 @@ typedef struct		s_scene
 
 typedef struct		s_img
 {
-	void			*img;
-	char			*img_writable;
-	int				bytes_per_pixel;
-	int				size_line;
-	int				endian;
+	SDL_Texture		*img;
+	SDL_Renderer	*renderer;
+	pthread_mutex_t	mutex;
 	t_res			res;
 }					t_img;
 
 typedef struct		s_env
 {
-	void			*mlx;
-	void			*win;
+	SDL_Window		*win;
+	SDL_Renderer	*renderer;
+	t_img			bg_img;
+	char			loop;
 	int				n_threads;
 	int				real_n_threads;
 	char			print_time;
+	char			*new_title;
 	unsigned int	processed_pixels;
 	struct timeval	clocks[2];
 	pthread_t		*threads;
 	pthread_mutex_t	mutex;
-	t_img			bg_img;
 	t_scene			*scene;
 	t_mtx			sphere_mtx;
 	t_mtx			plane_mtx;
 	t_mtx			cylinder_mtx;
 	t_mtx			cone_mtx;
+	t_list			*queue;
+	pthread_mutex_t	queuemutex;
 }					t_env;
 
 typedef struct		s_objenv
@@ -237,14 +239,22 @@ void				program(int argc, char **argv);
 
 t_env				*init_env(void);
 int					init_win(t_env *env);
-int					init_img(void *mlx, t_img *img, int width, int height);
+int					init_img(t_env *env, t_img *img, int width, int height);
 int					init_camera(t_camera *camera);
 
 /*
-** MLX methods
+** Destruction method
 */
 
+void				destruct_env(t_env *env);
+
+/*
+** SDL methods
+*/
+
+void				sdl_loop(t_env *env);
 void				set_img_pixel(t_img *img, int x, int y, t_rgb color);
+void				update_title(t_env *env);
 void				set_mlx_hooks(t_env *env);
 int					expose_hook(t_env *env);
 int					loop_hook(t_env *env);
@@ -335,6 +345,7 @@ t_mtx				plane_normal(t_obj *obj, t_inter *inter, t_ray *ray);
 /*
 ** Utils methods
 */
+void				add_to_queue(t_env *env, void (*method)(t_env *env));
 void				print_usage(char *binary_name);
 int					return_print(char *str, int return_state);
 t_objenv			set_objenv(t_env *env, t_obj *obj, t_tobj *tobj);

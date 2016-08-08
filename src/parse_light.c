@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 15:21:39 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/18 18:03:40 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:55:55 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static int	parse_light_2(char **line, int *i, t_light *light)
 {

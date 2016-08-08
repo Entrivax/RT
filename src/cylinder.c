@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 14:12:54 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:45:53 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:53:19 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 double	cylinder_inter(t_obj *obj, t_ray ray)
 {

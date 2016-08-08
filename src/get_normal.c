@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 14:23:07 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:44:15 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:53:53 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 #include "quadric_shortcuts.h"
 
 t_mtx	get_normal(t_ray ray)

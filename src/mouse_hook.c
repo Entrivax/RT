@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/22 15:51:08 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:37:43 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:54:27 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 int		mouse_hook(int button, int x, int y, t_env *env)
 {

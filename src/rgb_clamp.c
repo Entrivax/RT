@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 14:45:07 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 14:45:09 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:42 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void		rgb_clamp(t_rgb *color)
 {

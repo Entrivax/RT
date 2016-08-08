@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:53:25 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 11:51:53 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:55:11 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 int				parse_resolution(char **line, int *i, t_res *res)
 {

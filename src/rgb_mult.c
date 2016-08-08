@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 12:48:35 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/28 15:15:46 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:56:54 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void		rgb_mult(t_rgb *color, double mult)
 {

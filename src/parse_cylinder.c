@@ -6,11 +6,11 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:28:51 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/07/21 15:36:43 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 13:55:01 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 static int	parse_cylinder_4(char **line, int *i, t_cylinder *obj, t_tobj *tobj)
 {
