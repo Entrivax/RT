@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/08/08 13:50:40 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/08/08 14:38:44 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,9 +110,6 @@ $(OBJFOLDER)%.o: $(SRCFOLDER)%.c $(INC)
 	if ! [ -d "$(OBJFOLDER)" ]; then mkdir $(OBJFOLDER); fi
 	gcc $(CFLAGS) -c $< $(EFLAGS) $(IFLAGS) -o $@
 
-$(LIBX):
-	make -C $(LIBXFOLDER) all
-
 $(LIBFT):
 	make -C $(LIBFTFOLDER) all
 
@@ -128,6 +125,5 @@ fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFTFOLDER) fclean
 	make -C $(LIBMTXFOLDER) fclean
-	make -C $(LIBXFOLDER) clean
 
 re: fclean all

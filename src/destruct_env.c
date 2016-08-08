@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 10:43:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:50:26 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 14:28:15 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,30 @@ static void		rm_lst_content(void *elem, size_t s)
 	free(elem);
 }
 
+static void		exit_threads(t_env *env)
+{
+	int		i;
+
+	i = -1;
+	while (++i < env->n_threads)
+		if (env->threads[i])
+			pthread_cancel(env->threads[i]);
+	if (env->clockthread)
+	{
+		pthread_cancel(env->clockthread);
+		pthread_join(env->clockthread, NULL);
+	}
+	i = -1;
+	while (++i < env->n_threads)
+		if (env->threads[i] != NULL)
+			pthread_join(env->threads[i], NULL);
+}
+
 void			destruct_env(t_env *env)
 {
 	if (!env)
 		return ;
+	exit_threads(env);
 	if (env->bg_img.img)
 		SDL_DestroyTexture(env->bg_img.img);
 	env->bg_img.img = NULL;

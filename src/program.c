@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:04:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:50:00 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 14:32:36 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ static void	*clock_count(void *param)
 
 	env = (t_env *)param;
 	i = -1;
+	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 	while (++i < env->n_threads)
 		if (env->threads[i] != NULL)
 			pthread_join(env->threads[i], NULL);
 	gettimeofday(&env->clocks[1], NULL);
 	env->new_title = "rt @42 - Rendering finished";
 	add_to_queue(env, update_title);
-	//SDL_SetWindowTitle(env->win, "rt @42 - Rendering finished!");
 	ft_putstr("Time taken : ");
 	ft_putnbr(env->clocks[1].tv_sec - env->clocks[0].tv_sec);
 	ft_putchar(',');
@@ -73,9 +73,7 @@ static void	*clock_count(void *param)
 
 static void	handle_clock(t_env *env)
 {
-	pthread_t	pth;
-
-	if (pthread_create(&pth, NULL, clock_count, env))
+	if (pthread_create(&env->clockthread, NULL, clock_count, env))
 	{
 		ft_putstr("No handle of time due to the inability to run one ");
 		ft_putendl("more thread, sorry.");

@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:49:51 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/08 14:26:35 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ typedef struct		s_env
 	unsigned int	processed_pixels;
 	struct timeval	clocks[2];
 	pthread_t		*threads;
+	pthread_t		clockthread;
 	pthread_mutex_t	mutex;
 	t_scene			*scene;
 	t_mtx			sphere_mtx;
