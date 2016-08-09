@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 14:11:34 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:50:54 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/09 11:29:02 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int		init_img(t_env *env, t_img *img, int width, int height)
 		return (return_print("error during image initialization", -1));
 	pthread_mutex_init(&img->mutex, NULL);
 	img->renderer = env->renderer;
+	SDL_SetRenderTarget(env->renderer, img->img);
+	SDL_SetRenderDrawColor(env->renderer, 0, 0, 0, 0);
+	SDL_RenderClear(env->renderer);
 	SDL_QueryTexture(img->img, NULL, NULL, &img->res.width, &img->res.height);
 	return (0);
 }

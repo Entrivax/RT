@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 14:31:06 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/09 11:04:20 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void			*render_scene(void *arg)
 	t_env			*env;
 
 	env = (t_env *)arg;
+	pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, NULL);
 	while (1)
 	{
 		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
@@ -58,6 +59,7 @@ void			*render_scene(void *arg)
 		if (env->n_threads > 1)
 			pthread_mutex_unlock(&env->mutex);
 		pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+		pthread_testcancel();
 		if (current_pixel_cpy >= (unsigned int)(env->scene->camera->res.height *
 			env->scene->camera->res.width))
 			break ;

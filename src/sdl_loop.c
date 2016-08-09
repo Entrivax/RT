@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 10:41:49 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:50:30 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/09 11:26:33 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		sdl_loop(t_env *env)
 	{
 		SDL_PollEvent(&event);
 		if (event.type == SDL_QUIT)
-			break;
+			break ;
 		pthread_mutex_lock(&env->bg_img.mutex);
 		SDL_SetRenderTarget(env->renderer, NULL);
 		SDL_SetRenderDrawColor(env->renderer, 0, 0, 0, 0);

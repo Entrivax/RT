@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 10:43:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 14:28:15 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/09 11:13:12 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		exit_threads(t_env *env)
 	}
 	i = -1;
 	while (++i < env->n_threads)
-		if (env->threads[i] != NULL)
+		if (env->threads[i])
 			pthread_join(env->threads[i], NULL);
 }
 
