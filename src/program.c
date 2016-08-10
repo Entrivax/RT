@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:04:45 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 14:32:36 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/10 14:03:29 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,22 @@ static void	*clock_count(void *param)
 	gettimeofday(&env->clocks[1], NULL);
 	env->new_title = "rt @42 - Rendering finished";
 	add_to_queue(env, update_title);
-	ft_putstr("Time taken : ");
-	ft_putnbr(env->clocks[1].tv_sec - env->clocks[0].tv_sec);
-	ft_putchar(',');
-	ft_putnbr((env->clocks[1].tv_usec - env->clocks[0].tv_usec) / 1000);
-	ft_putendl("s");
+	if (env->print_time)
+	{
+		ft_putstr("Time taken : ");
+		ft_putnbr(env->clocks[1].tv_sec - env->clocks[0].tv_sec);
+		ft_putchar(',');
+		ft_putnbr((env->clocks[1].tv_usec - env->clocks[0].tv_usec) / 1000);
+		ft_putendl("s");
+	}
+	save_to_bmp(env);
 	return (NULL);
 }
 
-static void	handle_clock(t_env *env)
+static int	handle_clock(t_env *env)
 {
-	if (pthread_create(&env->clockthread, NULL, clock_count, env))
-	{
-		ft_putstr("No handle of time due to the inability to run one ");
-		ft_putendl("more thread, sorry.");
-	}
+	return (pthread_create(&env->clockthread, NULL, clock_count, env) ?
+		return_print("Can't initialiaze clock thread, aborting...", -1) : 0);
 }
 
 void		program(int argc, char **argv)
@@ -101,8 +102,8 @@ void		program(int argc, char **argv)
 		exit(-1);
 	if (init_working_threads(env) == -1)
 		exit(-1);
-	if (env->print_time)
-		handle_clock(env);
+	if (handle_clock(env) == -1)
+		exit(-1);
 	sdl_loop(env);
 	destruct_env(env);
 }

@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 14:26:35 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/10 09:47:19 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ typedef struct		s_env
 	t_mtx			plane_mtx;
 	t_mtx			cylinder_mtx;
 	t_mtx			cone_mtx;
+	int				fd;
 	t_list			*queue;
 	pthread_mutex_t	queuemutex;
 }					t_env;
@@ -349,6 +350,8 @@ t_mtx				plane_normal(t_obj *obj, t_inter *inter, t_ray *ray);
 void				add_to_queue(t_env *env, void (*method)(t_env *env));
 void				print_usage(char *binary_name);
 int					return_print(char *str, int return_state);
+void				save_to_bmp(t_env *env);
+void				print_memory(const void *addr, size_t size);
 t_objenv			set_objenv(t_env *env, t_obj *obj, t_tobj *tobj);
 
 #endif

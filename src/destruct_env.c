@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 10:43:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/09 11:13:12 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/09 15:00:31 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void			destruct_env(t_env *env)
 	if (!env)
 		return ;
 	exit_threads(env);
+	if (env->fd > 0)
+		close(env->fd);
+	env->fd = 0;
 	if (env->bg_img.img)
 		SDL_DestroyTexture(env->bg_img.img);
 	env->bg_img.img = NULL;

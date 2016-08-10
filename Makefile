@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/08/08 14:38:44 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/08/10 09:45:06 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCFILES=add_to_queue.c \
 		parse_sphere.c \
 		phong.c \
 		plane.c \
+		print_memory.c \
 		print_usage.c \
 		program.c \
 		render_scene.c \
@@ -55,6 +56,7 @@ SRCFILES=add_to_queue.c \
 		rgb_div.c \
 		rgb_mult.c \
 		rgb_new.c \
+		save_to_bmp.c \
 		sdl_loop.c \
 		set_img_pixel.c \
 		set_objenv.c \
