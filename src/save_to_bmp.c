@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 13:48:25 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/10 12:58:01 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/10 14:39:15 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ void		save_to_bmp(t_env *env)
 	add_to_queue(env, update_title);
 	pitch = env->bg_img.res.width * 4;
 	write_header(env);
-	if (!(pixels = malloc(sizeof(char) * (pitch * env->bg_img.res.height + 1))))
+	i = env->bg_img.res.width * env->bg_img.res.height * 4;
+	if (!(pixels = ft_memalloc(i)))
 	{
 		ft_putendl("malloc error");
 		return ;
 	}
 	SDL_RenderReadPixels(env->bg_img.renderer, NULL, 0, pixels, pitch);
-	i = env->bg_img.res.width * env->bg_img.res.height * 4;
 	buf = prepare_buffer(pixels, i);
 	write(env->fd, buf, i / 4 * 3);
 	close(env->fd);

@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 10:41:49 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/09 11:26:33 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/10 15:12:15 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	execute_queue(t_env *env)
 	t_list		*tmp;
 	void		(*method)(t_env *env);
 
+	if (!env->queue)
+		return ;
 	pthread_mutex_lock(&env->queuemutex);
 	tmp = env->queue;
 	while (tmp)
@@ -26,6 +28,7 @@ static void	execute_queue(t_env *env)
 			method(env);
 		tmp = env->queue->next;
 		free(env->queue);
+		env->queue = tmp;
 	}
 	env->queue = NULL;
 	pthread_mutex_unlock(&env->queuemutex);
