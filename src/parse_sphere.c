@@ -6,85 +6,62 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 12:28:17 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:56:10 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/12 14:36:21 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static int	parse_sphere_4(char **line, int *i, t_sphere *obj, t_tobj *tobj)
+static int	parse_sphere_3(char **line, int *i, t_objenv objenv)
 {
-	(void)tobj;
-	if (!ft_strcmp(line[i[0]], "shininess"))
+	t_material	*mat;
+
+	if (!ft_strcmp(line[i[0]], "material"))
 	{
-		if (!parse_double(line, i, &obj->shine))
-			return (return_print("Error parsing sphere shininess", 0));
+		if (line[i[0] + 1] == NULL || !(ft_strlen(line[i[0] + 1]) > 0)
+			|| !(mat = get_material(objenv.env, line[++i[0]])))
+			return (return_print("Error parsing sphere material", 0));
 		else
-			i[1] |= 64;
-	}
-	else if (!ft_strcmp(line[i[0]], "radius"))
-	{
-		if (!parse_double(line, i, &obj->radius))
-			return (return_print("Error parsing sphere radius", 0));
-		else
-		{
-			if (obj->radius < 0)
-				return (return_print("Error, radius can't be negative", 0));
-			obj->radius = POW2(obj->radius);
-			i[1] |= 2;
-		}
-	}
-	else if (!ft_strcmp(line[i[0]], "reflexion"))
-	{
-		if (!parse_double(line, i, &obj->refle))
-			return (return_print("Error parsion sphere reflexion", 0));
+			objenv.obj->mat = mat;
 	}
 	return (1);
 }
 
-static int	parse_sphere_3(char **line, int *i, t_sphere *obj, t_tobj *tobj)
-{
-	if (!ft_strcmp(line[i[0]], "ambiant"))
-	{
-		if (!parse_double(line, i, &obj->k_ambiant))
-			return (return_print("Error parsing sphere ambiant", 0));
-		else
-			i[1] |= 8;
-	}
-	else if (!ft_strcmp(line[i[0]], "specular"))
-	{
-		if (!parse_double(line, i, &obj->k_spec))
-			return (return_print("Error parsing sphere specular", 0));
-		else
-			i[1] |= 16;
-	}
-	else if (!ft_strcmp(line[i[0]], "diffuse"))
-	{
-		if (!parse_double(line, i, &obj->k_diffuse))
-			return (return_print("Error parsing sphere diffuse", 0));
-		else
-			i[1] |= 32;
-	}
-	return (parse_sphere_4(line, i, obj, tobj));
-}
-
-static int	parse_sphere_2(char **line, int *i, t_sphere *obj, t_tobj *tobj)
+static int	parse_sphere_2(char **line, int *i, t_objenv objenv)
 {
 	if (!ft_strcmp(line[i[0]], "position"))
 	{
-		if (!parse_mtx_trans(line, i, &tobj->trans))
+		if (!parse_mtx_trans(line, i, &objenv.tobj->trans))
 			return (return_print("Error parsing sphere position", 0));
 		else
 			i[1] |= 1;
 	}
-	else if (!ft_strcmp(line[i[0]], "color"))
+	else if (!ft_strcmp(line[i[0]], "rotation"))
 	{
-		if (!parse_color(line, i, &obj->color))
-			return (return_print("Error parsing sphere color", 0));
-		else
-			i[1] |= 4;
+		if (!parse_mtx_rot(line, i, &objenv.tobj->rot))
+			return (return_print("Error parsing sphere rotation", 0));
 	}
-	return (parse_sphere_3(line, i, obj, tobj));
+	else if (!ft_strcmp(line[i[0]], "radius"))
+	{
+		if (!parse_double(line, i, &((t_sphere *)objenv.obj)->radius))
+			return (return_print("Error parsing sphere radius", 0));
+		else
+		{
+			if (((t_sphere *)objenv.obj)->radius < 0)
+				return (return_print("Error, radius can't be negative", 0));
+			((t_sphere *)objenv.obj)->radius = POW2(((t_sphere *)
+				objenv.obj)->radius);
+		}
+	}
+	return (parse_sphere_3(line, i, objenv));
+}
+
+static void	init_sphere(t_env *env, t_tobj *tobj, t_sphere *obj)
+{
+	tobj->rot = mtx_createscalemtx(1, 1, 1);
+	tobj->scale = mtx_createscalemtx(1, 1, 1);
+	obj->radius = 1;
+	obj->mat = &env->base_material;
 }
 
 int			parse_sphere(t_env *env, char **line)
@@ -99,12 +76,11 @@ int			parse_sphere(t_env *env, char **line)
 	if ((obj = (t_sphere *)ft_memalloc(sizeof(t_obj))) == NULL ||
 		(lst = ft_lstnewfrom(obj, sizeof(*obj))) == NULL)
 		return (return_print("malloc error", 0));
-	tobj.rot = mtx_createscalemtx(1, 1, 1);
-	tobj.scale = mtx_createscalemtx(1, 1, 1);
+	init_sphere(env, &tobj, obj);
 	i[0] = 0;
 	i[1] = 0;
 	while (line[++i[0]])
-		if (parse_sphere_2(line, i, obj, &tobj) == 0)
+		if (parse_sphere_2(line, i, set_objenv(env, (t_obj *)obj, &tobj)) == 0)
 			return (0);
 	transform_object((t_obj *)obj, &tobj);
 	obj->inter = sphere_inter;
@@ -113,5 +89,5 @@ int			parse_sphere(t_env *env, char **line)
 		env->scene->objects = lst;
 	else
 		ft_lstadd(&(env->scene->objects), lst);
-	return (i[1] == 127 ? 1 : return_print("error sphere imcomplete", 0));
+	return (i[1] == 1 ? 1 : return_print("error sphere imcomplete", 0));
 }

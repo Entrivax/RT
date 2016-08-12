@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/08/10 09:45:06 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/08/12 10:31:00 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCFILES=add_to_queue.c \
 		destruct_env.c \
 		dot_vect.c \
 		find_closest.c \
+		get_material.c \
 		get_normal.c \
 		init_camera.c \
 		init_env.c \
@@ -41,6 +42,7 @@ SRCFILES=add_to_queue.c \
 		parse_helper.c \
 		parse_helper_2.c \
 		parse_light.c \
+		parse_material.c \
 		parse_plane.c \
 		parse_scene.c \
 		parse_sphere.c \

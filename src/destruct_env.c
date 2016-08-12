@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 10:43:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/09 15:00:31 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/11 15:21:36 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 static void		rm_lst_content(void *elem, size_t s)
 {
 	(void)s;
+	free(elem);
+}
+
+static void		rm_lst_material(void *elem, size_t s)
+{
+	(void)s;
+	free(((t_material *)elem)->name);
 	free(elem);
 }
 
@@ -37,6 +44,16 @@ static void		exit_threads(t_env *env)
 			pthread_join(env->threads[i], NULL);
 }
 
+void			clean_scene(t_scene *scene)
+{
+	if (scene->camera)
+		free(scene->camera);
+	ft_lstdel(&scene->objects, rm_lst_content);
+	ft_lstdel(&scene->lights, rm_lst_content);
+	ft_lstdel(&scene->materials, rm_lst_material);
+	free(scene);
+}
+
 void			destruct_env(t_env *env)
 {
 	if (!env)
@@ -56,12 +73,6 @@ void			destruct_env(t_env *env)
 	env->win = NULL;
 	SDL_Quit();
 	if (env->scene)
-	{
-		if (env->scene->camera)
-			free(env->scene->camera);
-		ft_lstdel(&env->scene->objects, rm_lst_content);
-		ft_lstdel(&env->scene->lights, rm_lst_content);
-		free(env->scene);
-	}
+		clean_scene(env->scene);
 	free(env);
 }

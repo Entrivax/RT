@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 14:23:19 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:50:49 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/12 14:44:38 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ t_env		*init_env(void)
 	}
 	env->n_threads = 1;
 	set_shapes_mtx(env);
+	init_material(&env->base_material);
 	return (env);
 }

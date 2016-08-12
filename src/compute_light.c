@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:53:01 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/12 13:57:17 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ static void	set_ambiant_light(t_phpa *ph, t_scene *scene, t_ray *ray,
 	n = mtx_negate(ray->dir);
 	dot = ft_fclamp((dot_vect(&n, &ph->normal) + scene->ambbaseimpact)
 		* scene->ambcoefimpact, 0, 1);
-	*color = rgb_new(ft_min(scene->i_ambiant.r, ray->closest->color.r) * dot
-		* ray->closest->k_ambiant,
-		ft_min(scene->i_ambiant.g, ray->closest->color.g) * dot
-		* ray->closest->k_ambiant,
-		ft_min(scene->i_ambiant.b, ray->closest->color.b) * dot
-		* ray->closest->k_ambiant);
+	*color = rgb_new(
+		ft_min(scene->i_ambiant.r, ray->closest->mat->color.r) * dot
+		* ray->closest->mat->k_ambiant,
+		ft_min(scene->i_ambiant.g, ray->closest->mat->color.g) * dot
+		* ray->closest->mat->k_ambiant,
+		ft_min(scene->i_ambiant.b, ray->closest->mat->color.b) * dot
+		* ray->closest->mat->k_ambiant);
 	ph->color = color;
 	ph->diffuse = &color[1];
 	ph->specular = &color[2];

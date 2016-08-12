@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/10 09:47:19 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/12 14:26:23 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,23 @@ typedef struct		s_inter
 	t_mtx			pos;
 }					t_inter;
 
-struct				s_obj
+typedef struct		s_material
 {
-	double			(*inter)(t_obj *, t_ray);
-	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
-	t_tobj			trans;
-	t_rgb			color;
+	char			*name;
 	double			shine;
 	double			k_ambiant;
 	double			k_spec;
 	double			k_diffuse;
 	double			refle;
+	t_rgb			color;
+}					t_material;
+
+struct				s_obj
+{
+	double			(*inter)(t_obj *, t_ray);
+	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_tobj			trans;
+	t_material		*mat;
 };
 
 typedef struct		s_sphere
@@ -83,12 +89,7 @@ typedef struct		s_sphere
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
-	t_rgb			color;
-	double			shine;
-	double			k_ambiant;
-	double			k_spec;
-	double			k_diffuse;
-	double			refle;
+	t_material		*mat;
 	double			radius;
 }					t_sphere;
 
@@ -97,12 +98,7 @@ typedef struct		s_cylinder
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
-	t_rgb			color;
-	double			shine;
-	double			k_ambiant;
-	double			k_spec;
-	double			k_diffuse;
-	double			refle;
+	t_material		*mat;
 	double			radius;
 }					t_cylinder;
 
@@ -111,12 +107,7 @@ typedef struct		s_cone
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
-	t_rgb			color;
-	double			shine;
-	double			k_ambiant;
-	double			k_spec;
-	double			k_diffuse;
-	double			refle;
+	t_material		*mat;
 	double			angle;
 }					t_cone;
 
@@ -125,12 +116,7 @@ typedef struct		s_plane
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
 	t_tobj			trans;
-	t_rgb			color;
-	double			shine;
-	double			k_ambiant;
-	double			k_spec;
-	double			k_diffuse;
-	double			refle;
+	t_material		*mat;
 }					t_plane;
 
 struct				s_ray
@@ -169,6 +155,7 @@ typedef struct		s_scene
 {
 	t_list			*objects;
 	t_list			*lights;
+	t_list			*materials;
 	t_camera		*camera;
 	t_rgb			bgcolor;
 	t_rgb			i_ambiant;
@@ -201,6 +188,7 @@ typedef struct		s_env
 	pthread_t		clockthread;
 	pthread_mutex_t	mutex;
 	t_scene			*scene;
+	t_material		base_material;
 	t_mtx			sphere_mtx;
 	t_mtx			plane_mtx;
 	t_mtx			cylinder_mtx;
@@ -243,6 +231,7 @@ t_env				*init_env(void);
 int					init_win(t_env *env);
 int					init_img(t_env *env, t_img *img, int width, int height);
 int					init_camera(t_camera *camera);
+void				init_material(t_material *mat);
 
 /*
 ** Destruction method
@@ -322,6 +311,7 @@ int					parse_cylinder(t_env *env, char **line);
 int					parse_plane(t_env *env, char **line);
 int					parse_sphere(t_env *env, char **line);
 int					parse_light(t_env *env, char **line);
+int					parse_material(t_env *env, char **line);
 
 /*
 ** RT methods
@@ -353,5 +343,6 @@ int					return_print(char *str, int return_state);
 void				save_to_bmp(t_env *env);
 void				print_memory(const void *addr, size_t size);
 t_objenv			set_objenv(t_env *env, t_obj *obj, t_tobj *tobj);
+t_material			*get_material(t_env *env, const char *id);
 
 #endif
