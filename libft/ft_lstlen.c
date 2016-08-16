@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_to_queue.c                                     :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/08 13:13:38 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/16 16:26:03 by lpilotto         ###   ########.fr       */
+/*   Created: 2016/08/16 11:51:40 by lpilotto          #+#    #+#             */
+/*   Updated: 2016/08/16 11:52:57 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "libft.h"
 
-void		add_to_queue(t_env *env, void (*method)(t_env *env))
+int		ft_lstlen(t_list *lst)
 {
-	t_list		*list;
+	int		l;
 
-	list = ft_lstnewfrom(method, sizeof(method));
-	pthread_mutex_lock(&env->queuemutex);
-	if (!env->queue)
-		env->queue = list;
-	else
-		ft_lstaddend(env->queue, list);
-	pthread_mutex_unlock(&env->queuemutex);
+	l = 0;
+	while (lst)
+	{
+		l++;
+		lst = lst->next;
+	}
+	return (l);
 }

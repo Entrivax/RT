@@ -6,7 +6,7 @@
 #    By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/29 10:23:41 by lpilotto          #+#    #+#              #
-#    Updated: 2016/06/16 12:27:22 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/08/16 16:26:43 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,8 +74,10 @@ INPUT=ft_memset.c \
 	  ft_lstdelone.c \
 	  ft_lstdel.c \
 	  ft_lstadd.c \
+	  ft_lstaddend.c \
 	  ft_lstiter.c \
 	  ft_lstmap.c \
+	  ft_lstlen.c \
 	  ft_putnbrendl.c \
 	  ft_putnbrendl_fd.c \
 	  ft_strtolower.c \

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_to_queue.c                                     :+:      :+:    :+:   */
+/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/08 13:13:38 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/16 16:26:03 by lpilotto         ###   ########.fr       */
+/*   Created: 2016/08/16 16:22:40 by lpilotto          #+#    #+#             */
+/*   Updated: 2016/08/16 16:24:48 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "libft.h"
+#include <string.h>
 
-void		add_to_queue(t_env *env, void (*method)(t_env *env))
+void	ft_lstaddend(t_list *alst, t_list *new)
 {
-	t_list		*list;
-
-	list = ft_lstnewfrom(method, sizeof(method));
-	pthread_mutex_lock(&env->queuemutex);
-	if (!env->queue)
-		env->queue = list;
-	else
-		ft_lstaddend(env->queue, list);
-	pthread_mutex_unlock(&env->queuemutex);
+	if (alst == NULL || new == NULL)
+		return ;
+	while (alst->next)
+		alst = alst->next;
+	alst->next = new;
 }
