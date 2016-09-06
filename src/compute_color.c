@@ -6,22 +6,22 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/12 13:37:51 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:52:55 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_rgb		compute_color(t_env *env, t_ray *ray, int ref, float refrem)
+t_color		compute_color(t_env *env, t_ray *ray, int ref, float refrem)
 {
-	t_rgb	color;
+	t_color	color;
 	t_ray	reflected;
 	t_mtx	normal;
 
 	if (find_closest(env->scene, ray))
 	{
-		refrem *= ray->closest->mat->refle;
 		color = compute_light(env->scene, ray);
+		refrem *= ray->closest->mat->refle;
 		if (refrem <= 0.001 || ref >= env->scene->max_ref)
 			return (color);
 		normal = get_normal(*ray);

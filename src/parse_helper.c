@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 12:53:25 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:55:11 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:47:38 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				parse_vector3(char **line, int *i, t_mtx *v)
 	return (1);
 }
 
-int				parse_color(char **line, int *i, t_rgb *rgb)
+int				parse_color(char **line, int *i, t_color *rgb)
 {
 	if (line[*i + 1] == NULL || line[*i + 2] == NULL ||
 		line[*i + 3] == NULL)

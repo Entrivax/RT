@@ -6,13 +6,13 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 17:01:21 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 14:31:41 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:51:33 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		set_img_pixel(t_img *img, int x, int y, t_rgb color)
+void		set_img_pixel(t_img *img, int x, int y, t_color color)
 {
 	if (x >= 0 && x < img->res.width && y >= 0 && y < img->res.height)
 	{

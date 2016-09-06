@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/08/12 10:31:00 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/09/06 14:41:04 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ SRCFILES=add_to_queue.c \
 		transform_object.c \
 		update_title.c \
 		vect_reflect.c
-INCFOLDER=include/
+INCFOLDER=./include/
 INCFILES=keycodes.h \
 		 quadric_shortcuts.h \
 		 rt.h
@@ -76,35 +76,30 @@ INC=$(addprefix $(INCFOLDER),$(INCFILES))
 OBJFOLDER=obj/
 OBJ=$(addprefix $(OBJFOLDER),$(subst .c,.o,$(SRCFILES)))
 SRC=$(addprefix $(SRCFOLDER),$(SRCFILES))
-ifeq ($(OUT),MAC)
-  LIBXFOLDER=./minilibx_macos
-  LIBX=$(LIBXFOLDER)/libmlx.a
-else
-  LIBXFOLDER=./minilibx
-  LIBX=$(LIBXFOLDER)/libmlx_Linux.a
-endif
 LIBFTFOLDER=./libft
 LIBFT=$(LIBFTFOLDER)/libft.a
+LIBBMPFOLDER=./libbmp
+LIBBMP=$(LIBBMPFOLDER)/libbmp.a
 LIBMTXFOLDER=./libmtx
 LIBMTX=$(LIBMTXFOLDER)/libmtx.a
 LIBSDLFOLDER=./SDL2-2.0.4
 EFLAGS=-Wall -Werror -Wextra -g
-IFLAGS=-I$(LIBFTFOLDER) -I$(LIBMTXFOLDER)/include -I./include
+IFLAGS=-I$(LIBFTFOLDER) -I$(LIBMTXFOLDER)/include -I$(LIBBMPFOLDER)/include -I$(INCFOLDER)
 ifeq ($(OUT),MAC)
   IFLAGS+= -I./SDL2.framework/Headers
-  LFLAGS=-L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx -lpthread -L./SDL2.framework/Versions/Current -F. -framework SDL2 -framework Cocoa
+  LFLAGS=-L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx -L$(LIBBMPFOLDER) -lbmp -lpthread -L./SDL2.framework/Versions/Current -F. -framework SDL2 -framework Cocoa
   EDITLIB=install_name_tool -change @executable_path/../Frameworks/SDL2.framework/SDL2 @executable_path/SDL2.framework/SDL2 $(NAME) && install_name_tool -change @rpath/SDL2.framework/Versions/A/SDL2 @executable_path/SDL2.framework/SDL2 $(NAME)
 else
   PATHSOSDL=-Wl,-R`pwd`/$(LIBSDLFOLDER)/build/.libs
   IFLAGS+= -I$(LIBSDLFOLDER)/include
-  LFLAGS=-L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx -lm -lpthread $(PATHSOSDL) -L`pwd`/$(LIBSDLFOLDER)/build/.libs -lSDL2
+  LFLAGS=-L$(LIBFTFOLDER) -lft -L$(LIBMTXFOLDER) -lmtx -L$(LIBBMPFOLDER) -lbmp -lm -lpthread $(PATHSOSDL) -L`pwd`/$(LIBSDLFOLDER)/build/.libs -lSDL2
   DYNSDL=libSDL2-2.0.so.0
 endif
 CFLAGS=-D $(OUT)
 
 .PHONY: all clean fclean re
 
-$(NAME): $(LIBFT) $(LIBMTX) $(OBJ)
+$(NAME): $(LIBFT) $(LIBMTX) $(LIBBMP) $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(LFLAGS)
 	$(EDITLIB)
 
@@ -120,14 +115,19 @@ $(LIBFT):
 $(LIBMTX):
 	make -C $(LIBMTXFOLDER) all
 
+$(LIBBMP):
+	make -C $(LIBBMPFOLDER) all
+
 clean:
 	rm -rf $(OBJFOLDER)
 	make -C $(LIBFTFOLDER) clean
 	make -C $(LIBMTXFOLDER) clean
+	make -C $(LIBBMPFOLDER) clean
 
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFTFOLDER) fclean
 	make -C $(LIBMTXFOLDER) fclean
+	make -C $(LIBBMPFOLDER) fclean
 
 re: fclean all

@@ -6,13 +6,13 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 14:45:07 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:56:42 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:48:42 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		rgb_clamp(t_rgb *color)
+void		rgb_clamp(t_color *color)
 {
 	if (color->r < 0)
 		color->r = 0;

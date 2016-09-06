@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_mult.c                                         :+:      :+:    :+:   */
+/*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/16 12:48:35 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/09/06 14:54:42 by lpilotto         ###   ########.fr       */
+/*   Created: 2016/08/22 09:57:09 by lpilotto          #+#    #+#             */
+/*   Updated: 2016/08/22 10:48:07 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "libbmp.h"
 
-void		rgb_mult(t_color *color, double mult)
+t_rgb	get_rgb(unsigned char r, unsigned char g, unsigned char b)
 {
-	color->r *= mult;
-	color->g *= mult;
-	color->b *= mult;
+	t_rgb	rgb;
+
+	rgb.r = r;
+	rgb.g = g;
+	rgb.b = b;
+	return (rgb);
 }
 
-t_color		rgb_mult_cpy(t_color color, double mult)
+void	set_rgb(t_rgb *rgb, unsigned char r, unsigned char g, unsigned char b)
 {
-	t_color	ret;
-
-	ret.r = color.r * mult;
-	ret.g = color.g * mult;
-	ret.b = color.b * mult;
-	return (ret);
+	rgb->r = r;
+	rgb->g = g;
+	rgb->b = b;
 }

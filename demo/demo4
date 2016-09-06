@@ -9,12 +9,19 @@ light position -8 3.5 -5 color 1 1 1 power 100
 --light position -1 1 -2.5 color 1 1 1
 --light position 0 2 -2.5 color 1 1 1
 --Camera declaration
-camera position 0 3 -30 rotation 0 0 0 screen 800 800 fov 90 antialiasing 3
+camera position 0 3 -30 rotation 0 0 0 screen 1280 720 fov 90 antialiasing 1
+
+--Material declarations
+material id sphere color 1 0 0 ambiant 1 diffuse 0.9 specular 1 shininess 100 reflexion 0
+material id wallb color .4 .4 .85 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion 1
+material id floor color .5 .5 .5 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion .9
+material id ceil color .4 .4 .4 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion .9
+
 --Primitives declarations
-sphere position 0 0 0 radius 1 color 1 0 0 ambiant 1 diffuse 0.9 specular 1 shininess 100 reflexion 0
-plane position 0 -1 0 rotation 0 0 0 color .5 .5 .5 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion .9
-plane position 0 10 0 rotation 0 0 0 color .4 .4 .4 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion .9
-plane position 0 0 5 rotation 90 0 0 color .4 .4 .85 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion .9
---plane position 0 0 -6 rotation 90 0 0 color .4 .4 .85 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion .9
-plane position -10 0 0 rotation 90 0 105 color .4 .4 .85 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion .9
-plane position 10 0 0 rotation 90 0 -105 color .4 .4 .85 ambiant 1 diffuse 0.9 specular 1 shininess 1000 reflexion .9
+sphere position 0 0 0 radius 1 material sphere
+plane position 0 -1 0 rotation 0 0 0 material floor
+plane position 0 10 0 rotation 0 0 0 material ceil
+plane position 0 0 5 rotation 90 0 0 material wallb
+--plane position 0 0 -6 rotation 90 0 0 material wallb
+plane position -10 0 0 rotation 90 0 105 material wallb
+plane position 10 0 0 rotation 90 0 -105 material wallb

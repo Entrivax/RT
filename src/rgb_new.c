@@ -6,15 +6,15 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 12:16:35 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:56:59 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:51:02 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_rgb	rgb_new(float r, float g, float b)
+t_color	rgb_new(float r, float g, float b)
 {
-	t_rgb	color;
+	t_color	color;
 
 	color.r = r;
 	color.g = g;

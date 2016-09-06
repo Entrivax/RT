@@ -6,16 +6,16 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/09 11:04:20 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:55:05 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static t_rgb	get_pixel_color(t_env *env, int x, int y)
+static t_color	get_pixel_color(t_env *env, int x, int y)
 {
 	t_ray			ray;
-	t_rgb			color;
+	t_color			color;
 	int				x_a;
 	int				y_a;
 

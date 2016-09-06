@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:35:58 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/12 13:57:17 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:53:32 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	near_enough(t_ray *r1, t_ray *r2)
 }
 
 static void	set_ambiant_light(t_phpa *ph, t_scene *scene, t_ray *ray,
-								t_rgb *color)
+								t_color *color)
 {
 	double	dot;
 	t_mtx	n;
@@ -60,11 +60,11 @@ static void	set_color_max(t_phpa *ph)
 	rgb_clamp(ph->color);
 }
 
-t_rgb		compute_light(t_scene *scene, t_ray *ray)
+t_color		compute_light(t_scene *scene, t_ray *ray)
 {
 	t_list	*current;
 	t_ray	lray;
-	t_rgb	color[3];
+	t_color	color[3];
 	t_phpa	ph;
 
 	current = scene->lights;

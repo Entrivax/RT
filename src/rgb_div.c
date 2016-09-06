@@ -6,13 +6,13 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 12:32:25 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:56:50 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:50:22 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	rgb_div(t_rgb *color, double n)
+void	rgb_div(t_color *color, double n)
 {
 	color->r /= n;
 	color->g /= n;

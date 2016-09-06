@@ -1,5 +1,5 @@
 --Scene declaration, must be the first thing
-scene ambiant 0.3 0.3 0.3 background 0.6549 0.7764 0.8784 ambiant_base_impact 1 ambiant_coef_impact 0
+scene ambiant 0.3 0.3 0.3 background 0.6549 0.7764 0.8784 ambiant_base_impact 1 ambiant_coef_impact 0 max_reflexion 0
 
 --Material declaration, must be done before using them
 material id pillar color .5 .5 .5 ambiant 1 diffuse .9 specular 1 shininess 100 refle 0

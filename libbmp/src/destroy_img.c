@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_mult.c                                         :+:      :+:    :+:   */
+/*   destroy_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/16 12:48:35 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/09/06 14:54:42 by lpilotto         ###   ########.fr       */
+/*   Created: 2016/08/23 11:44:51 by lpilotto          #+#    #+#             */
+/*   Updated: 2016/08/23 16:16:41 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "libbmp.h"
+#include <stdlib.h>
 
-void		rgb_mult(t_color *color, double mult)
+void	destroy_image(t_image *img)
 {
-	color->r *= mult;
-	color->g *= mult;
-	color->b *= mult;
-}
-
-t_color		rgb_mult_cpy(t_color color, double mult)
-{
-	t_color	ret;
-
-	ret.r = color.r * mult;
-	ret.g = color.g * mult;
-	ret.b = color.b * mult;
-	return (ret);
+	if (!img)
+		return ;
+	if (img->data)
+		free(img->data);
+	img->data = NULL;
+	free(img);
 }

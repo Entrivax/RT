@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_mult.c                                         :+:      :+:    :+:   */
+/*   set_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/16 12:48:35 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/09/06 14:54:42 by lpilotto         ###   ########.fr       */
+/*   Created: 2016/08/19 10:32:55 by lpilotto          #+#    #+#             */
+/*   Updated: 2016/08/23 15:53:38 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "libbmp.h"
 
-void		rgb_mult(t_color *color, double mult)
+void	set_pixel(t_image *img, int x, int y, t_rgb rgb)
 {
-	color->r *= mult;
-	color->g *= mult;
-	color->b *= mult;
-}
-
-t_color		rgb_mult_cpy(t_color color, double mult)
-{
-	t_color	ret;
-
-	ret.r = color.r * mult;
-	ret.g = color.g * mult;
-	ret.b = color.b * mult;
-	return (ret);
+	img->data[x + y * img->width] = rgb;
 }

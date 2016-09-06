@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:28:51 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/12 14:41:40 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:13:43 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	parse_cylinder_3(char **line, int *i, t_cylinder *obj)
 	return (1);
 }
 
-static int	parse_cylinder_2(char **line, int *i, t_objenv objenv)
+static int	parse_cyl_2(char **line, int *i, t_objenv objenv)
 {
 	t_material	*mat;
 
@@ -79,7 +79,7 @@ int			parse_cylinder(t_env *env, char **line)
 	i[0] = 0;
 	i[1] = 0;
 	while (line[++i[0]])
-		if (parse_cylinder_2(line, i, set_objenv(env, (t_obj *)obj, &tobj)) == 0)
+		if (parse_cyl_2(line, i, set_objenv(env, (t_obj *)obj, &tobj)) == 0)
 			return (0);
 	transform_object((t_obj *)obj, &tobj);
 	obj->inter = cylinder_inter;
