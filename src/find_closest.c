@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 16:58:52 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:53:42 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/13 14:49:02 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	find_closest(t_scene *scene, t_ray *ray)
 	while (current)
 	{
 		obj = (t_obj *)current->content;
-		if ((t = obj->inter(obj, *ray)) > LIMIT_MIN
+		if (/*aabb(ray, obj) && */(t = obj->inter(obj, *ray)) > LIMIT_MIN
 			&& (t < ray->t || ray->closest == NULL))
 		{
 			ray->t = t;

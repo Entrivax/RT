@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 12:28:17 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/12 14:36:21 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/13 17:28:56 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static int	parse_sphere_3(char **line, int *i, t_objenv objenv)
 {
 	t_material	*mat;
+	t_sphere	*sphere;
 
+	sphere = (t_sphere *)objenv.obj;
 	if (!ft_strcmp(line[i[0]], "material"))
 	{
 		if (line[i[0] + 1] == NULL || !(ft_strlen(line[i[0] + 1]) > 0)
@@ -23,6 +25,16 @@ static int	parse_sphere_3(char **line, int *i, t_objenv objenv)
 			return (return_print("Error parsing sphere material", 0));
 		else
 			objenv.obj->mat = mat;
+	}
+	else if (!ft_strcmp(line[i[0]], "start_height"))
+	{
+		if (!parse_double(line, i, &sphere->h1))
+			return (return_print("Error parsing sphere start height", 0));
+	}
+	else if (!ft_strcmp(line[i[0]], "end_height"))
+	{
+		if (!parse_double(line, i, &sphere->h2))
+			return (return_print("Error parsing sphere end height", 0));
 	}
 	return (1);
 }
@@ -61,7 +73,27 @@ static void	init_sphere(t_env *env, t_tobj *tobj, t_sphere *obj)
 	tobj->rot = mtx_createscalemtx(1, 1, 1);
 	tobj->scale = mtx_createscalemtx(1, 1, 1);
 	obj->radius = 1;
+	obj->h1 = 0;
+	obj->h2 = 0;
 	obj->mat = &env->base_material;
+}
+
+static void	last_setup(t_sphere *obj)
+{
+	double rad;
+
+	rad = sqrt(obj->radius);
+	set_vector(&obj->aabb[0], obj->trans.trans.mtx[3] - rad,
+		obj->trans.trans.mtx[7] - rad,
+		obj->trans.trans.mtx[11] - rad);
+	set_vector(&obj->aabb[1], obj->trans.trans.mtx[3] + rad,
+		obj->trans.trans.mtx[7] + rad,
+		obj->trans.trans.mtx[11] + rad);
+	if (obj->h1 == obj->h2)
+	{
+		obj->h1 = -rad;
+		obj->h2 = rad;
+	}
 }
 
 int			parse_sphere(t_env *env, char **line)
@@ -85,6 +117,7 @@ int			parse_sphere(t_env *env, char **line)
 	transform_object((t_obj *)obj, &tobj);
 	obj->inter = sphere_inter;
 	obj->normal = sphere_normal;
+	last_setup(obj);
 	if (env->scene->objects == NULL)
 		env->scene->objects = lst;
 	else

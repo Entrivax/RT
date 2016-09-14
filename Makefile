@@ -6,7 +6,7 @@
 #    By: lpilotto <lpilotto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/25 12:44:37 by lpilotto          #+#    #+#              #
-#    Updated: 2016/09/06 14:41:04 by lpilotto         ###   ########.fr        #
+#    Updated: 2016/09/13 15:41:08 by lpilotto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@
 OUT=MAC
 NAME=rt
 SRCFOLDER=src/
-SRCFILES=add_to_queue.c \
+SRCFILES=aabb.c \
+		add_to_queue.c \
 		compute_color.c \
 		compute_light.c \
 		cone.c \
@@ -106,7 +107,7 @@ $(NAME): $(LIBFT) $(LIBMTX) $(LIBBMP) $(OBJ)
 all: $(NAME)
 
 $(OBJFOLDER)%.o: $(SRCFOLDER)%.c $(INC)
-	if ! [ -d "$(OBJFOLDER)" ]; then mkdir $(OBJFOLDER); fi
+	@if ! [ -d "$(OBJFOLDER)" ]; then mkdir $(OBJFOLDER); fi
 	gcc $(CFLAGS) -c $< $(EFLAGS) $(IFLAGS) -o $@
 
 $(LIBFT):

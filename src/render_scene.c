@@ -6,11 +6,22 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/09/06 14:55:05 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/12 16:02:12 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static t_mtx	get_inv_vect(t_mtx *mtx)
+{
+	t_mtx			ret;
+
+	ret = mtx_init(3, 1);
+	ret.mtx[0] = 1. / mtx->mtx[0];
+	ret.mtx[1] = 1. / mtx->mtx[1];
+	ret.mtx[2] = 1. / mtx->mtx[2];
+	return (ret);
+}
 
 static t_color	get_pixel_color(t_env *env, int x, int y)
 {
@@ -33,6 +44,7 @@ static t_color	get_pixel_color(t_env *env, int x, int y)
 				+ x_a / (double)env->scene->camera->antialiasing), mtx_mult(
 				env->scene->camera->y_indent, y - env->scene->camera->res.height
 				/ 2. + y_a / (double)env->scene->camera->antialiasing))));
+			ray.invdir = get_inv_vect(&ray.dir);
 			rgb_add_rgb(&color, compute_color(env, &ray, 0, 1));
 		}
 	}

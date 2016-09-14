@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 12:29:02 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/08 13:57:24 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/13 17:29:18 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 double	sphere_inter(t_obj *obj, t_ray ray)
 {
 	double	abc[3];
-	double	t[2];
 	char	ret;
+	double	t[2];
+	double	h;
 
 	ray.pos = mtx_product(obj->trans.i_ftrans, ray.pos);
 	ray.dir = mtx_product(obj->trans.i_rot, ray.dir);
@@ -25,13 +26,13 @@ double	sphere_inter(t_obj *obj, t_ray ray)
 		+ ray.pos.mtx[1] * ray.dir.mtx[1] + ray.pos.mtx[2] * ray.dir.mtx[2]);
 	abc[2] = POW2(ray.pos.mtx[0]) + POW2(ray.pos.mtx[1]) + POW2(ray.pos.mtx[2])
 		- ((t_sphere *)obj)->radius;
-	if ((ret = solve_quadratic(abc, t, t + 1)) == 0)
+	if ((ret = solve_quadratic(abc, t)) == 0)
 		return (-1);
-	if (ret == 1)
+	if ((h = ray.dir.mtx[1] * t[0] + ray.pos.mtx[1])
+		>= ((t_cone *)obj)->h1 && h <= ((t_sphere *)obj)->h2)
 		return (t[0]);
-	if ((t[0] < t[1] || t[1] <= LIMIT_MIN) && t[0] > LIMIT_MIN)
-		return (t[0]);
-	else if (t[1] > LIMIT_MIN)
+	else if ((h = ray.dir.mtx[1] * t[1] + ray.pos.mtx[1])
+		>= ((t_cone *)obj)->h1 && h <= ((t_sphere *)obj)->h2)
 		return (t[1]);
 	return (-1);
 }

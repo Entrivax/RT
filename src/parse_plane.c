@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:01:04 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/12 14:42:06 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/12 15:54:27 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	init_plane(t_env *env, t_tobj *tobj, t_plane *obj)
 	tobj->rot = mtx_createscalemtx(1, 1, 1);
 	tobj->scale = mtx_createscalemtx(1, 1, 1);
 	obj->mat = &env->base_material;
+	set_vector(&obj->aabb[0], -1.0 / 0.0, -1.0 / 0.0, -1.0 / 0.0);
+	set_vector(&obj->aabb[1], 1.0 / 0.0, 1.0 / 0.0, 1.0 / 0.0);
 }
 
 int			parse_plane(t_env *env, char **line)

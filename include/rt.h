@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/09/06 14:56:33 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/13 17:27:20 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define POW2(x) (x*x)
 # define DOTV(a, b) (a.mtx[0]*b.mtx[0] + a.mtx[1]*b.mtx[1] + a.mtx[2]*b.mtx[2])
 # define NEAR(a, b) (a - LIMIT_MIN < b && b < a + LIMIT_MIN)
+# define MIN(a, b) ((a < b) ? a : b)
+# define MAX(a, b) ((a > b) ? a : b)
 
 typedef struct s_ray	t_ray;
 typedef struct s_obj	t_obj;
@@ -82,6 +84,7 @@ struct				s_obj
 {
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_mtx			aabb[2];
 	t_tobj			trans;
 	t_material		*mat;
 };
@@ -90,33 +93,42 @@ typedef struct		s_sphere
 {
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_mtx			aabb[2];
 	t_tobj			trans;
 	t_material		*mat;
 	double			radius;
+	double			h1;
+	double			h2;
 }					t_sphere;
 
 typedef struct		s_cylinder
 {
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_mtx			aabb[2];
 	t_tobj			trans;
 	t_material		*mat;
 	double			radius;
+	double			h;
 }					t_cylinder;
 
 typedef struct		s_cone
 {
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_mtx			aabb[2];
 	t_tobj			trans;
 	t_material		*mat;
 	double			angle;
+	double			h1;
+	double			h2;
 }					t_cone;
 
 typedef struct		s_plane
 {
 	double			(*inter)(t_obj *, t_ray);
 	t_mtx			(*normal)(t_obj *, t_inter *, t_ray *);
+	t_mtx			aabb[2];
 	t_tobj			trans;
 	t_material		*mat;
 }					t_plane;
@@ -124,6 +136,7 @@ typedef struct		s_plane
 struct				s_ray
 {
 	t_mtx			dir;
+	t_mtx			invdir;
 	t_mtx			pos;
 	t_obj			*closest;
 	double			t;
@@ -271,8 +284,7 @@ t_color				rgb_mult_cpy(t_color color, double mult);
 ** Math method
 */
 
-char				solve_quadratic(double *abc, double *t1, double *t2);
-
+char				solve_quadratic(double *abc, double *t);
 void				set_vector(t_mtx *mtx, double x, double y, double z);
 double				dot_vect(t_mtx *vect1, t_mtx *vect2);
 t_mtx				norm_vect(t_mtx mtx);
@@ -336,6 +348,7 @@ double				cone_inter(t_obj *obj, t_ray ray);
 t_mtx				cone_normal(t_obj *obj, t_inter *inter, t_ray *ray);
 double				plane_inter(t_obj *obj, t_ray ray);
 t_mtx				plane_normal(t_obj *obj, t_inter *inter, t_ray *ray);
+char				aabb(t_ray *ray, t_obj *obj);
 
 /*
 ** Utils methods

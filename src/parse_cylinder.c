@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:28:51 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/12 15:13:43 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/13 16:21:38 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ static int	parse_cylinder_3(char **line, int *i, t_cylinder *obj)
 				return (return_print("Error, radius can't be negative", 0));
 			obj->radius = POW2(obj->radius);
 		}
+	}
+	else if (!ft_strcmp(line[i[0]], "height"))
+	{
+		if (!parse_double(line, i, &obj->h))
+			return (return_print("Error parsing cylinder height", 0));
+		else if (obj->h < 0)
+			return (return_print("Error, height can't be negative", 0));
 	}
 	return (1);
 }
@@ -60,7 +67,10 @@ static void	init_cylinder(t_env *env, t_tobj *tobj, t_cylinder *obj)
 	tobj->rot = mtx_createscalemtx(1, 1, 1);
 	tobj->scale = mtx_createscalemtx(1, 1, 1);
 	obj->radius = 1;
+	obj->h = 1;
 	obj->mat = &env->base_material;
+	set_vector(&obj->aabb[0], -1.0 / 0.0, -1.0 / 0.0, -1.0 / 0.0);
+	set_vector(&obj->aabb[1], 1.0 / 0.0, 1.0 / 0.0, 1.0 / 0.0);
 }
 
 int			parse_cylinder(t_env *env, char **line)

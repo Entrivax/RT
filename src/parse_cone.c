@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:42:56 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/08/12 14:16:32 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/13 17:34:51 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static int	parse_cone_3(char **line, int *i, t_objenv *objenv)
 {
 	double		a;
+	t_cone		*cone;
 
+	cone = (t_cone *)objenv->obj;
 	if (!ft_strcmp(line[i[0]], "angle"))
 	{
 		if (!parse_double(line, i, &a))
@@ -27,6 +29,16 @@ static int	parse_cone_3(char **line, int *i, t_objenv *objenv)
 			((t_cone *)objenv->obj)->angle = tan(a * M_PI / 180.);
 			i[1] |= 4;
 		}
+	}
+	else if (!ft_strcmp(line[i[0]], "start_height"))
+	{
+		if (!parse_double(line, i, &cone->h1))
+			return (return_print("Error parsing cone start height", 0));
+	}
+	else if (!ft_strcmp(line[i[0]], "end_height"))
+	{
+		if (!parse_double(line, i, &cone->h2))
+			return (return_print("Error parsing cone end height", 0));
 	}
 	return (1);
 }
@@ -64,6 +76,22 @@ static void	init_cone(t_env *env, t_tobj *tobj, t_cone *obj)
 	tobj->scale = mtx_createscalemtx(1, 1, 1);
 	obj->angle = 90 * M_PI / 180.;
 	obj->mat = &env->base_material;
+	obj->h1 = -1;
+	obj->h2 = 1;
+	set_vector(&obj->aabb[0], -1.0 / 0.0, -1.0 / 0.0, -1.0 / 0.0);
+	set_vector(&obj->aabb[1], 1.0 / 0.0, 1.0 / 0.0, 1.0 / 0.0);
+}
+
+static void	check(t_cone *obj)
+{
+	double		tmp;
+
+	if (obj->h1 > obj->h2)
+	{
+		tmp = obj->h2;
+		obj->h2 = obj->h1;
+		obj->h1 = tmp;
+	}
 }
 
 int			parse_cone(t_env *env, char **line)
@@ -87,9 +115,10 @@ int			parse_cone(t_env *env, char **line)
 	transform_object((t_obj *)obj, &tobj);
 	obj->inter = cone_inter;
 	obj->normal = cone_normal;
+	check(obj);
 	if (env->scene->objects == NULL)
 		env->scene->objects = lst;
 	else
 		ft_lstadd(&(env->scene->objects), lst);
-	return (i[1] == 7 ? 1 : return_print("error cone imcomplete", 0));
+	return (i[1] == 5 ? 1 : return_print("error cone imcomplete", 0));
 }
