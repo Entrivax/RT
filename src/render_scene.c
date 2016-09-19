@@ -6,13 +6,13 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:41:10 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/09/12 16:02:12 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/19 14:47:59 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static t_mtx	get_inv_vect(t_mtx *mtx)
+t_mtx			get_inv_vect(t_mtx *mtx)
 {
 	t_mtx			ret;
 

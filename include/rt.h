@@ -6,7 +6,7 @@
 /*   By: lpilotto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 13:02:41 by lpilotto          #+#    #+#             */
-/*   Updated: 2016/09/13 17:27:20 by lpilotto         ###   ########.fr       */
+/*   Updated: 2016/09/19 14:48:34 by lpilotto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,6 +295,7 @@ t_mtx				mtx_createscalemtx(double scalex, double scaley,
 											double scalez);
 void				transform_object(t_obj *obj, t_tobj *tobj);
 t_mtx				vect_reflect(t_mtx i, t_mtx n);
+t_mtx				get_inv_vect(t_mtx *mtx);
 
 /*
 ** Parse file method
